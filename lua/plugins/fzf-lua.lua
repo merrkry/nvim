@@ -4,9 +4,15 @@ return {
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	-- or if using mini.icons/mini.nvim
 	-- dependencies = { "echasnovski/mini.icons" },
-	opts = {},
+	opts = {
+		winopts = {
+			preview = {
+				default = 'bat_native',
+			}
+		},
+	},
 	keys = {
-		{ '<leader>f', '<cmd>FzfLua files<cr>', desc = "Find files" },
-		{ '<leader>/', '<cmd>FzfLua live_grep_native<cr>',  desc = "Search files" }
+		{ '<leader>f', '<cmd>FzfLua files<cr>',            desc = "Find files" },
+		{ '<leader>/', '<cmd>FzfLua live_grep_native<cr>', desc = "Search files" }
 	},
 }
