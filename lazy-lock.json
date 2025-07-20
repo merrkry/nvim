@@ -2,7 +2,7 @@
   "blink.cmp": { "branch": "main", "commit": "586ee87534f5bf65f1c8dea2d1da2a57e8cddd36" },
   "copilot.lua": { "branch": "master", "commit": "14bf786180b2ca4578915c56989b6d676dddc6f3" },
   "dropbar.nvim": { "branch": "master", "commit": "5c3b0afdae4eeebb17497062ffad58d98b1c1c79" },
-  "everforest": { "branch": "master", "commit": "f40c2e6c8784c99c57c79edc94cd180e76450222" },
+  "flash.nvim": { "branch": "main", "commit": "3c942666f115e2811e959eabbdd361a025db8b63" },
   "fzf-lua": { "branch": "main", "commit": "07326bb95827f1f4b7d7aead5e8094d844588d08" },
   "guess-indent.nvim": { "branch": "main", "commit": "84a4987ff36798c2fc1169cbaff67960aed9776f" },
   "indent-blankline.nvim": { "branch": "master", "commit": "005b56001b2cb30bfa61b7986bc50657816ba4ba" },
