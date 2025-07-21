@@ -8,6 +8,12 @@ return {
 			dashboard = {
 				enable = true,
 			},
+			image = {
+				enable = true,
+				math = {
+					enabled = false,
+				},
+			},
 		},
 		keys = {
 		},
