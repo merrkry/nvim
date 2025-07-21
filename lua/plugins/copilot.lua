@@ -14,8 +14,8 @@ return {
 					debounce = 500,
 					keymap = {
 						accept = false,
-						accept_word = "<A-l>",
-						accept_line = "<A-j>",
+						accept_word = "<C-l>",
+						accept_line = "<C-j>",
 						dismiss = "<C-e>",
 					},
 				},

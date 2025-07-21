@@ -26,11 +26,10 @@ return {
 		--
 		-- See :h blink-cmp-config-keymap for defining your own keymap
 		keymap = {
-			preset = 'enter',
-
-			['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
-			['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
-			['<C-y>'] = { 'select_and_accept' },
+			preset = 'super-tab',
+			['<CR>'] = { 'accept', 'fallback' },
+			['<C-j>'] = { 'select_next', 'fallback' },
+			['<C-k>'] = { 'select_prev', 'fallback' },
 		},
 
 		appearance = {
@@ -43,7 +42,7 @@ return {
 		completion = {
 			list = {
 				selection = {
-					preselect = true,
+					preselect = function(ctx) return not require('blink-cmp').snippet_active({ direction = 1 }) end,
 					auto_insert = false
 				},
 			},
