@@ -3,7 +3,7 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		-- https://github.com/OXY2DEV/markview.nvim?tab=readme-ov-file#-lazynvim
 		dependencies = { "OXY2DEV/markview.nvim" },
-		branch = 'master',
+		branch = 'master', -- TODO: migrate to main
 		lazy = false,
 		build = ":TSUpdate",
 		main = 'nvim-treesitter.configs',
