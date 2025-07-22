@@ -12,7 +12,26 @@ return {
 		},
 	},
 	keys = {
-		{ "<leader>f", "<cmd>FzfLua files<cr>", desc = "Find files" },
-		{ "<leader>/", "<cmd>FzfLua live_grep_native<cr>", desc = "Search files" },
+		{
+			"<leader>f",
+			function()
+				require("fzf-lua").global()
+			end,
+			desc = "Find files",
+		},
+		{
+			"<leader>/",
+			function()
+				require("fzf-lua").live_grep_native()
+			end,
+			desc = "Search files",
+		},
+		{
+			"<leader>?",
+			function()
+				require("fzf-lua").keymaps()
+			end,
+			desc = "Search keymaps",
+		},
 	},
 }
