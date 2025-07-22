@@ -175,11 +175,13 @@ return {
 			})
 			local servers = {
 				["basedpyright"] = {},
+				["bashls"] = {},
 				["clangd"] = {
 					cmd = { "clangd", "--enable-config" },
 				},
 				["gopls"] = {},
 				["lua_ls"] = {},
+				["nil_ls"] = {},
 				["nixd"] = {
 					settings = {
 						nixpkgs = {
@@ -189,6 +191,8 @@ return {
 				},
 				["prettier"] = {},
 				["ruff"] = {},
+				["rust_analyzer"] = {},
+				["taplo"] = {},
 			}
 			for server_name, config in pairs(servers) do
 				vim.lsp.config(server_name, config)

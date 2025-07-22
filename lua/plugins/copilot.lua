@@ -24,6 +24,7 @@ return {
 					cpp = true,
 					go = true,
 					python = true,
+					rust = true,
 					["*"] = false,
 				},
 			})
