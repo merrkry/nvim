@@ -50,5 +50,3 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 		vim.hl.on_yank()
 	end,
 })
-
-vim.keymap.set('n', '<leader>cf', vim.lsp.buf.format, { desc = 'Format code' })
