@@ -7,12 +7,12 @@ return {
 	opts = {
 		winopts = {
 			preview = {
-				default = 'bat_native',
-			}
+				default = "bat_native",
+			},
 		},
 	},
 	keys = {
-		{ '<leader>f', '<cmd>FzfLua files<cr>',            desc = "Find files" },
-		{ '<leader>/', '<cmd>FzfLua live_grep_native<cr>', desc = "Search files" }
+		{ "<leader>f", "<cmd>FzfLua files<cr>", desc = "Find files" },
+		{ "<leader>/", "<cmd>FzfLua live_grep_native<cr>", desc = "Search files" },
 	},
 }

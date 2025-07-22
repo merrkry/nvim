@@ -1,18 +1,18 @@
 return {
 	{
-		'navarasu/onedark.nvim',
+		"navarasu/onedark.nvim",
 		lazy = false,
 		priority = 1000,
 		config = function()
-			require('onedark').setup {
-				style = 'warm',
+			require("onedark").setup({
+				style = "warm",
 				transparent = true,
 
 				code_style = {
-					comments = 'none',
+					comments = "none",
 				},
-			}
-			require('onedark').load()
+			})
+			require("onedark").load()
 		end,
 	},
 }

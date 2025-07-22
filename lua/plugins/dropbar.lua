@@ -1,6 +1,6 @@
 return {
 	{
-		'Bekaboo/dropbar.nvim',
+		"Bekaboo/dropbar.nvim",
 		-- optional, but required for fuzzy finder support
 		-- dependencies = {
 		--   'nvim-telescope/telescope-fzf-native.nvim',
@@ -9,10 +9,10 @@ return {
 		config = function()
 			-- fix transparency
 			vim.api.nvim_set_hl(0, "WinBar", {
-				bg = 'none'
+				bg = "none",
 			})
 			vim.api.nvim_set_hl(0, "WinBarNC", {
-				bg = 'none'
+				bg = "none",
 			})
 			-- local dropbar_api = require('dropbar.api')
 			-- vim.keymap.set('n', '<Leader>;', dropbar_api.pick, { desc = 'Pick symbols in winbar' })

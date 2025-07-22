@@ -44,7 +44,7 @@ return {
 
 			-- Directly bind accept to <Tab> will cause issues, or won't work at all.
 			-- https://github.com/zbirenbaum/copilot.lua/discussions/153#discussioncomment-5701223
-			vim.keymap.set('i', '<Tab>', function()
+			vim.keymap.set("i", "<Tab>", function()
 				if require("copilot.suggestion").is_visible() then
 					require("copilot.suggestion").accept()
 				else
@@ -52,5 +52,5 @@ return {
 				end
 			end, { desc = "Super Tab" })
 		end,
-	}
+	},
 }
