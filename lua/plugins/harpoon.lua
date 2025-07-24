@@ -32,7 +32,11 @@ return {
 			vim.api.nvim_set_hl(0, "NormalFloat", { fg = "none", bg = "none" })
 			vim.api.nvim_set_hl(0, "FloatBorder", { fg = "none", bg = "none" })
 			vim.keymap.set("n", "<leader>H", function()
-				harpoon.ui:toggle_quick_menu(list, { border = "rounded", title_pos = "center" })
+				harpoon.ui:toggle_quick_menu(list, {
+					border = "rounded",
+					title_pos = "center",
+					ui_width_ratio = 0.40,
+				})
 			end, { desc = "Open harpoon floating menu" })
 
 			vim.keymap.set("n", "<leader>ha", function()
