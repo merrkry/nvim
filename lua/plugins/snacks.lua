@@ -5,18 +5,18 @@ return {
 		lazy = false,
 		---@type snacks.Config
 		opts = {
-			bigfile = { enabled = true },
-			dashboard = { enabled = true },
+			bigfile = {},
+			dashboard = {},
 			image = {
-				enabled = true,
 				math = {
 					enabled = false,
 				},
 			},
-			input = { enabled = true },
-			notifier = { enabled = true },
-			quickfile = { enabled = true },
-			statuscolumn = { enabled = true },
+			indent = {},
+			input = {},
+			notifier = {},
+			quickfile = {},
+			statuscolumn = {},
 		},
 		keys = {
 			{
