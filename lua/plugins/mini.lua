@@ -18,6 +18,8 @@ return {
 					update_n_lines = "<leader>sn", -- Update `n_lines`
 				},
 			})
+
+			require("mini.cursorword").setup()
 		end,
 	},
 }
