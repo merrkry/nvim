@@ -13,18 +13,32 @@ return {
 	},
 	keys = {
 		{
-			"<leader>f",
+			"<leader> ",
 			function()
 				require("fzf-lua").global()
 			end,
-			desc = "Find files",
+			desc = "Open global picker",
+		},
+		{
+			"<leader>f",
+			function()
+				require("fzf-lua").files()
+			end,
+			desc = "Open file picker",
+		},
+		{
+			"<leader>B",
+			function()
+				require("fzf-lua").buffers()
+			end,
+			desc = "Open buffer picker",
 		},
 		{
 			"<leader>/",
 			function()
 				require("fzf-lua").live_grep_native()
 			end,
-			desc = "Search files",
+			desc = "Search with ripgrep",
 		},
 		{
 			"<leader>?",
