@@ -6,7 +6,22 @@ return {
 		---@type snacks.Config
 		opts = {
 			bigfile = {},
-			dashboard = {},
+			dashboard = {
+				sections = {
+					{ section = "header" },
+					{
+						-- pane = 2,
+						icon = " ",
+						title = "Git Status",
+						section = "terminal",
+						enabled = function()
+							return Snacks.git.get_root() ~= nil
+						end,
+						cmd = "git status --short --branch --renames",
+					},
+					{ section = "startup" },
+				},
+			},
 			image = {
 				math = {
 					enabled = false,
