@@ -57,3 +57,7 @@ vim.keymap.del("n", "gra")
 vim.keymap.del("n", "grn")
 vim.keymap.del("n", "grr")
 vim.keymap.del("n", "grt")
+
+vim.keymap.set("n", "<leader>w", "<cmd>wall<CR>", { desc = "Write all buffers" })
+vim.keymap.set("n", "<leader>q", "<cmd>quit<CR>", { desc = "Quit buffer" })
+vim.keymap.set("n", "<leader>Q", "<cmd>wqall<CR>", { desc = "Write and quit all buffers" })
