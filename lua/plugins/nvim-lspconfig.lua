@@ -183,7 +183,11 @@ return {
 				["basedpyright"] = {},
 				["bashls"] = {},
 				["clangd"] = {
-					cmd = { "clangd", "--enable-config" },
+					cmd = {
+						"clangd",
+						"--enable-config",
+						"--fallback-style=Google",
+					},
 				},
 				["gopls"] = {},
 				["lua_ls"] = {},
