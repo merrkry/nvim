@@ -119,8 +119,8 @@ return {
 		end,
 	},
 	{
-		"merrkry/harpoon-lualine", -- TODO: upstream
-		branch = "fix-index",
+		"letieu/harpoon-lualine",
+		branch = "master",
 		dependencies = {
 			{
 				"ThePrimeagen/harpoon",
