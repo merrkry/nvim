@@ -3,17 +3,6 @@ return {
 		"echasnovski/mini.nvim",
 		version = false, -- change to '*' to use release branches
 		config = function()
-			require("mini.files").setup({
-				mappings = {
-					close = "<Esc>",
-				},
-				options = { use_as_default_explorer = false },
-				windows = {
-					preview = true,
-					width_preview = 80,
-				},
-			})
-
 			require("mini.icons").setup()
 			require("mini.icons").mock_nvim_web_devicons()
 
@@ -32,8 +21,6 @@ return {
 
 			require("mini.cursorword").setup()
 		end,
-		keys = {
-			{ "<leader>e", require("mini.files").open, desc = "Open floating file explorer" },
-		},
+		keys = {},
 	},
 }
