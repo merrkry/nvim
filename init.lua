@@ -9,4 +9,6 @@ require("keymaps")
 
 require("lazy-bootstrap")
 
+require("lsp")
+
 require("fcitx5")

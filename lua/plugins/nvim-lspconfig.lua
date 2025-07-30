@@ -179,35 +179,6 @@ return {
 			vim.lsp.config("*", {
 				capabilities = require("blink-cmp").get_lsp_capabilities(),
 			})
-			local servers = {
-				["basedpyright"] = {},
-				["bashls"] = {},
-				["clangd"] = {
-					cmd = {
-						"clangd",
-						"--enable-config",
-						"--fallback-style=Google",
-					},
-				},
-				["gopls"] = {},
-				["lua_ls"] = {},
-				["nil_ls"] = {},
-				["nixd"] = {
-					settings = {
-						nixpkgs = {
-							expr = "import (builtins.getFlake(toString ./.)).inputs.nixpkgs { }",
-						},
-					},
-				},
-				["prettier"] = {},
-				["ruff"] = {},
-				["rust_analyzer"] = {},
-				["taplo"] = {},
-			}
-			for server_name, config in pairs(servers) do
-				vim.lsp.config(server_name, config)
-				vim.lsp.enable(server_name, true)
-			end
 		end,
 	},
 }
