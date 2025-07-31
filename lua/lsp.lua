@@ -2,8 +2,8 @@ local servers = {
 	"basedpyright",
 	"bashls",
 	"clangd",
+	"emmylua_ls", -- .emmyrc.json from https://www.reddit.com/r/neovim/comments/1mdtr4g/emmylua_ls_is_supersnappy/
 	"gopls",
-	"lua_ls",
 	"nil_ls",
 	"nixd",
 	"prettier",
