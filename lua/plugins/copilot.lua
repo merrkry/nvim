@@ -13,7 +13,7 @@ return {
 					auto_trigger = true,
 					debounce = 500,
 					keymap = {
-						accept = false,
+						accept = "<C-y>",
 						accept_word = "<C-l>",
 						accept_line = "<C-j>",
 						dismiss = "<C-e>",
@@ -46,13 +46,13 @@ return {
 
 			-- Directly bind accept to <Tab> will cause issues, or won't work at all.
 			-- https://github.com/zbirenbaum/copilot.lua/discussions/153#discussioncomment-5701223
-			vim.keymap.set("i", "<Tab>", function()
-				if require("copilot.suggestion").is_visible() then
-					require("copilot.suggestion").accept()
-				else
-					vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
-				end
-			end, { desc = "Super Tab" })
+			-- vim.keymap.set("i", "<Tab>", function()
+			-- 	if require("copilot.suggestion").is_visible() then
+			-- 		require("copilot.suggestion").accept()
+			-- 	else
+			-- 		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
+			-- 	end
+			-- end, { desc = "Super Tab" })
 		end,
 	},
 }
