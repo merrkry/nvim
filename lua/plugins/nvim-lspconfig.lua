@@ -142,6 +142,8 @@ return {
 						-- enable by default
 						vim.lsp.inlay_hint.enable(true)
 					end
+					-- disable by default
+					vim.lsp.inlay_hint.enable(false)
 				end,
 			})
 
