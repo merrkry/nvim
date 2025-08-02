@@ -27,7 +27,7 @@ return {
 			desc = "Open file picker",
 		},
 		{
-			"<leader>B",
+			"<leader>b",
 			function()
 				require("fzf-lua").buffers()
 			end,
