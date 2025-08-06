@@ -3,6 +3,10 @@ return {
 		"echasnovski/mini.nvim",
 		version = false, -- change to '*' to use release branches
 		config = function()
+			require("mini.ai").setup()
+
+			require("mini.move").setup()
+
 			require("mini.pairs").setup()
 
 			require("mini.surround").setup({
@@ -18,10 +22,30 @@ return {
 				},
 			})
 
+			require("mini.bracketed").setup()
+
+			require("mini.jump").setup({
+				delay = {
+					highlight = 250,
+					idle_stop = 2500,
+				},
+			})
+			vim.api.nvim_set_hl(0, "MiniJump", { link = "Search" })
+
 			require("mini.cursorword").setup()
 
 			require("mini.icons").setup()
 			require("mini.icons").mock_nvim_web_devicons()
+
+			vim.api.nvim_create_autocmd("InsertEnter", {
+				once = true,
+				callback = function()
+					-- Ensure this is lazily loaded to avoid conflict with Snacks.dashboard
+					require("mini.trailspace").setup({
+						only_in_normal_buffers = true,
+					})
+				end,
+			})
 		end,
 		keys = {},
 	},
