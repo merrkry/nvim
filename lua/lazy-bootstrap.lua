@@ -15,7 +15,6 @@ rtp:prepend(lazypath)
 
 require("lazy").setup({
 	{
-		change_detection = { enabled = false },
 		import = "plugins",
 	},
 }, {
@@ -38,4 +37,5 @@ require("lazy").setup({
 			lazy = "💤 ",
 		},
 	},
+	change_detection = { enabled = false },
 })
