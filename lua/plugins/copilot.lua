@@ -16,7 +16,9 @@ return {
 						accept = "<C-y>",
 						accept_word = "<C-l>",
 						accept_line = "<C-j>",
-						dismiss = "<C-e>",
+						next = "<M-]>",
+						prev = "<M-[>",
+						dismiss = "<C-n>",
 					},
 				},
 				filetypes = {

@@ -61,3 +61,21 @@ vim.keymap.del("n", "grt")
 vim.keymap.set("n", "<leader>w", "<cmd>wall<CR>", { desc = "Write all buffers" })
 vim.keymap.set("n", "<leader>q", "<cmd>quit<CR>", { desc = "Quit buffer" })
 vim.keymap.set("n", "<leader>Q", "<cmd>wqall<CR>", { desc = "Write and quit all buffers" })
+
+-- Navigation under insert mode
+
+vim.keymap.set("i", "<M-k>", "<up>")
+vim.keymap.set("i", "<M-j>", "<down>")
+vim.keymap.set("i", "<M-h>", "<left>")
+vim.keymap.set("i", "<M-l>", "<right>")
+
+vim.keymap.set("i", "<M-w>", "<C-o>w")
+vim.keymap.set("i", "<M-W>", "<C-o>W")
+vim.keymap.set("i", "<M-b>", "<C-o>b")
+vim.keymap.set("i", "<M-B>", "<C-o>B")
+vim.keymap.set("i", "<M-e>", "<C-o>e")
+vim.keymap.set("i", "<M-E>", "<C-o>E")
+
+vim.keymap.set("i", "<M-a>", "<C-o>0")
+vim.keymap.set("i", "<M-e>", "<C-o>$")
+vim.keymap.set("i", "<M-m>", "<C-o>_")
