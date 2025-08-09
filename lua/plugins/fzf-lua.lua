@@ -5,13 +5,6 @@ return {
 		-- dependencies = { "nvim-tree/nvim-web-devicons" },
 		-- or if using mini.icons/mini.nvim
 		dependencies = { "echasnovski/mini.nvim" },
-		opts = {
-			winopts = {
-				preview = {
-					default = "bat_native",
-				},
-			},
-		},
 		keys = {
 			{
 				"<leader> ",
@@ -49,5 +42,10 @@ return {
 				desc = "Search keymaps",
 			},
 		},
+		config = function()
+			require("fzf-lua").setup({ "fzf-native" })
+
+			require("fzf-lua").register_ui_select()
+		end,
 	},
 }
