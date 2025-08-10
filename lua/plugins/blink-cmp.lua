@@ -20,7 +20,7 @@ return {
 			["<C-e>"] = { "hide", "fallback" },
 
 			["<C-y>"] = { "accept", "fallback" },
-			["<CR>"] = { "accept", "fallback" },
+			-- ["<CR>"] = { "accept", "fallback" },
 			-- ["<Tab>"] = { "select_and_accept", "fallback" },
 
 			["<Up>"] = { "select_prev", "fallback" },
