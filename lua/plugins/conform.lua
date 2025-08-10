@@ -20,6 +20,7 @@ return {
 				function()
 					require("conform").format()
 				end,
+				mode = { "n", "x" },
 				desc = "Format buffer",
 			},
 		},
