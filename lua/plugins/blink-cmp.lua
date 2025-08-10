@@ -47,9 +47,7 @@ return {
 		completion = {
 			list = {
 				selection = {
-					preselect = function(ctx)
-						return not require("blink-cmp").snippet_active({ direction = 1 })
-					end,
+					preselect = true,
 					auto_insert = false,
 				},
 			},
