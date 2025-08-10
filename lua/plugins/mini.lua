@@ -7,8 +7,6 @@ return {
 
 			require("mini.move").setup()
 
-			require("mini.pairs").setup()
-
 			require("mini.surround").setup({
 				-- from LazyVim
 				mappings = {
