@@ -12,6 +12,11 @@ return {
 		config = function()
 			require("oil").setup({
 				delete_to_trash = true,
+				skip_confirm_for_simple_edits = true,
+				prompt_save_on_select_new_entry = true,
+				lsp_file_methods = {
+					autosave_changes = true,
+				},
 				watch_for_changes = true,
 
 				keymaps = {
