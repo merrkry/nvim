@@ -1,8 +1,7 @@
 local keymap = require("vim.keymap")
 return {
 	{
-		"phaazon/hop.nvim",
-		version = "*",
+		"smoka7/hop.nvim",
 		opts = {
 			keys = "etovxqpdygfblzhckisuran",
 		},
