@@ -1,11 +1,16 @@
 return {
 	{
 		"nvim-zh/colorful-winsep.nvim",
-		config = true,
-		event = {
-			"BufRead",
-			"BufNewFile",
-		},
-		opts = { hi = { fg = "#e5c07b" } },
+		event = { "WinLeave" },
+		config = function()
+			require("colorful-winsep").setup({
+				highlight = {
+					fg = "#e5c07b",
+				},
+				animate = {
+					enabled = false,
+				},
+			})
+		end,
 	},
 }
