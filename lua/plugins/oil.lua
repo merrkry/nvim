@@ -7,7 +7,7 @@ return {
 		-- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
 		lazy = false,
 		keys = {
-			{ "<leader>e", "<cmd>Oil<cr>", desc = "Open buffer file explorer" },
+			{ "<leader>E", "<cmd>Oil<cr>", desc = "Open buffer file explorer" },
 		},
 		config = function()
 			require("oil").setup({

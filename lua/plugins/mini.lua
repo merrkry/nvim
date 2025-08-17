@@ -22,6 +22,20 @@ return {
 
 			require("mini.bracketed").setup()
 
+			require("mini.files").setup({
+				mappings = {
+					close = "<ESC>",
+				},
+				options = {
+					permanent_delete = false, -- mini doesn't provide xdg trash support, hopefully git saves us
+					use_as_default_explorer = false,
+				},
+				windows = {
+					preview = true,
+					width_preview = 80,
+				},
+			})
+
 			require("mini.jump").setup({
 				delay = {
 					highlight = 250,
@@ -45,6 +59,14 @@ return {
 				end,
 			})
 		end,
-		keys = {},
+		keys = {
+			{
+				"<leader>e",
+				function()
+					require("mini.files").open(vim.api.nvim_buf_get_name(0))
+				end,
+				desc = "Open floating file explorer",
+			},
+		},
 	},
 }
