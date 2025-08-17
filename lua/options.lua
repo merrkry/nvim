@@ -77,3 +77,6 @@ vim.o.laststatus = 3
 
 vim.opt.swapfile = false
 vim.opt.autoread = true
+
+-- recommended by auto-session.nvim
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
