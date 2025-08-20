@@ -4,9 +4,7 @@ return {
 		event = { "WinLeave" },
 		config = function()
 			require("colorful-winsep").setup({
-				highlight = {
-					fg = "#e5c07b",
-				},
+				highlight = "#e5c07b",
 				animate = {
 					enabled = false,
 				},
