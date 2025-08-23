@@ -19,7 +19,7 @@ return {
 		---@type render.md.UserConfig
 		opts = {
 			-- enabled = false,
-			render_modes = true,
+			-- render_modes = true,
 			latex = {
 				enabled = false,
 			},
