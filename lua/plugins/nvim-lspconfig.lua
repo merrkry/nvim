@@ -165,9 +165,6 @@ return {
 						[vim.diagnostic.severity.HINT] = "󰌶 ",
 					},
 				} or {},
-				virtual_lines = {
-					current_line = true,
-				},
 				virtual_text = {
 					source = "if_many",
 					spacing = 2,
@@ -187,5 +184,20 @@ return {
 				capabilities = require("blink-cmp").get_lsp_capabilities(),
 			})
 		end,
+		keys = {
+			{
+				"<leader>tv",
+				function()
+					if vim.diagnostic.config().virtual_lines then
+						vim.notify("Virtual lines disabled")
+						vim.diagnostic.config({ virtual_lines = false })
+					else
+						vim.notify("Virtual lines enabled")
+						vim.diagnostic.config({ virtual_lines = { current_line = true } })
+					end
+				end,
+				desc = "Toggle virtual line",
+			},
+		},
 	},
 }
