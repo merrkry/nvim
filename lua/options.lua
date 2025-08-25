@@ -80,3 +80,6 @@ vim.opt.autoread = true
 
 -- recommended by auto-session.nvim
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
+-- avoid race between tabline and dropbar
+vim.opt.showtabline = 2
