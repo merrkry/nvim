@@ -17,6 +17,7 @@ return {
 					end
 					return true
 				end,
+				noautocmd = true, -- avoid conflict with format on save
 			})
 
 			local group = vim.api.nvim_create_augroup("autosave", {})

@@ -1,6 +1,7 @@
 return {
 	{
 		"stevearc/conform.nvim",
+		event = "VeryLazy", -- format on save may be triggered before hitting any of the keys
 		opts = {
 			formatters_by_ft = {
 				css = { "prettier" },
@@ -13,6 +14,7 @@ return {
 			default_format_opts = {
 				lsp_format = "first",
 			},
+			format_on_save = {},
 		},
 		keys = {
 			{
@@ -22,6 +24,13 @@ return {
 				end,
 				mode = { "n", "x" },
 				desc = "Format buffer",
+			},
+			{
+				-- Toggling format on save not planned
+				-- https://github.com/stevearc/conform.nvim/issues/192#issuecomment-2817321950
+				"<leader>W",
+				"<cmd>noautocmd w<CR>",
+				desc = "Format buffer without autocmd",
 			},
 		},
 	},
