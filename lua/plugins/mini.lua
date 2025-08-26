@@ -23,9 +23,6 @@ return {
 			require("mini.bracketed").setup()
 
 			require("mini.files").setup({
-				mappings = {
-					close = "<ESC>",
-				},
 				options = {
 					permanent_delete = false, -- mini doesn't provide xdg trash support, hopefully git saves us
 					use_as_default_explorer = false,
