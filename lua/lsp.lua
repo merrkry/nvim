@@ -13,4 +13,6 @@ local servers = {
 	"taplo",
 }
 
+vim.lsp.set_log_level("OFF")
+
 vim.lsp.enable(servers, true)

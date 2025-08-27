@@ -147,8 +147,6 @@ return {
 					end
 					-- disable by default
 					vim.lsp.inlay_hint.enable(false)
-
-					vim.lsp.set_log_level("WARN")
 				end,
 			})
 
