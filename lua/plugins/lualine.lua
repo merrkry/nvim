@@ -2,24 +2,18 @@ return {
 	{
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
-		dependencies = { "echasnovski/mini.nvim" },
+		dependencies = {
+			"echasnovski/mini.nvim",
+
+			"AndreM222/copilot-lualine",
+		},
 		config = function()
 			require("lualine").setup({
 				options = {
 					theme = "auto",
 				},
 				sections = {
-					lualine_c = {
-						"%=",
-						{
-							"harpoon2",
-							-- set non-nil value to overwrite the default options
-							icon = "",
-							separator = { left = "|", right = "|" },
-							indicators = { "1", "2", "3", "4", "5", "6", "7", "8", "9" },
-							active_indicators = { "[1]", "[2]", "[3]", "[4]", "[5]", "[6]", "[7]", "[8]", "[9]" },
-						},
-					},
+					lualine_x = { "copilot", "encoding", "filetype" },
 				},
 			})
 		end,

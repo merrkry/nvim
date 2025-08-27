@@ -119,15 +119,4 @@ return {
 			-- end, { desc = "Open harpoon picker" })
 		end,
 	},
-	{
-		"letieu/harpoon-lualine",
-		event = "VeryLazy",
-		branch = "master",
-		dependencies = {
-			{
-				"ThePrimeagen/harpoon",
-				branch = "harpoon2",
-			},
-		},
-	},
 }
