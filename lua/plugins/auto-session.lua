@@ -8,6 +8,7 @@ return {
 				local cmd = "git rev-parse --is-inside-work-tree"
 				return vim.fn.system(cmd) == "true\n"
 			end,
+			continue_restore_on_error = false, -- why is this true by default?
 			lsp_stop_on_restore = true,
 			purge_after_minutes = 20160, -- two weeks
 		},
