@@ -11,6 +11,9 @@ return {
 				auto_integrations = true,
 			})
 			vim.cmd("colorscheme catppuccin")
+
+			-- semantic highlighting on comments sometimes mess up with todo comments
+			vim.api.nvim_set_hl(0, "@lsp.type.comment", {})
 		end,
 	},
 }
