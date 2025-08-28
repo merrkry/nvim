@@ -42,7 +42,11 @@ return {
 					enabled = false,
 				},
 			},
-			indent = {},
+			indent = {
+				animate = {
+					enabled = false,
+				},
+			},
 			input = {},
 			notifier = {},
 			quickfile = {},
