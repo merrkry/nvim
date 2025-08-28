@@ -83,3 +83,6 @@ vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 
 -- avoid race between tabline and dropbar
 vim.opt.showtabline = 2
+
+-- disable intro page
+vim.opt.shortmess = "I"
