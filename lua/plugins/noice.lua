@@ -4,10 +4,13 @@ return {
 		event = "VeryLazy",
 		dependencies = {
 			"MunifTanjim/nui.nvim",
-			-- "rcarriga/nvim-notify", -- optional for notify, fallback to "mini"
+			"rcarriga/nvim-notify", -- optional for notify, fallback to "mini"
 		},
 		config = function()
 			require("noice").setup({
+				messages = {
+					view = "mini",
+				},
 				lsp = {
 					-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
 					override = {
