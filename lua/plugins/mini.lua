@@ -33,13 +33,14 @@ return {
 				},
 			})
 
-			require("mini.jump").setup({
-				delay = {
-					highlight = 250,
-					idle_stop = 2500,
-				},
-			})
-			vim.api.nvim_set_hl(0, "MiniJump", { link = "Search" })
+			-- replaced by hop.nvim
+			-- require("mini.jump").setup({
+			-- 	delay = {
+			-- 		highlight = 250,
+			-- 		idle_stop = 2500,
+			-- 	},
+			-- })
+			-- vim.api.nvim_set_hl(0, "MiniJump", { link = "Search" })
 
 			require("mini.cursorword").setup()
 
