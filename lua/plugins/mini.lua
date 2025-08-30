@@ -5,7 +5,11 @@ return {
 		config = function()
 			require("mini.ai").setup()
 
+			require("mini.comment").setup()
+
 			require("mini.move").setup()
+
+			require("mini.splitjoin").setup()
 
 			require("mini.surround").setup({
 				-- from LazyVim
@@ -43,6 +47,12 @@ return {
 			-- vim.api.nvim_set_hl(0, "MiniJump", { link = "Search" })
 
 			require("mini.cursorword").setup()
+
+			require("mini.hipatterns").setup({
+				highlighters = {
+					hex_color = require("mini.hipatterns").gen_highlighter.hex_color(),
+				},
+			})
 
 			require("mini.icons").setup()
 			require("mini.icons").mock_nvim_web_devicons()
