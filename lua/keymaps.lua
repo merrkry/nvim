@@ -20,7 +20,7 @@ vim.keymap.del("n", "grr")
 vim.keymap.del("n", "grt")
 
 -- Quick quit
-vim.keymap.set("n", "<leader>w", "<cmd>wall<CR>", { desc = "Write all buffers" })
+vim.keymap.set("n", "<leader>w", "<cmd>write<CR>", { desc = "Write buffer" })
 vim.keymap.set("n", "<leader>q", "<cmd>quit<CR>", { desc = "Quit buffer" })
 vim.keymap.set("n", "<leader>Q", "<cmd>wqall<CR>", { desc = "Write and quit all buffers" })
 

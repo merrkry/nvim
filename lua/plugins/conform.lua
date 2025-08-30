@@ -13,6 +13,7 @@ return {
 			},
 			default_format_opts = {
 				lsp_format = "first",
+				async = true,
 			},
 			format_on_save = {},
 		},
