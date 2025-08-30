@@ -1,6 +1,6 @@
 return {
 	{
-		"echasnovski/mini.nvim",
+		"nvim-mini/mini.nvim",
 		version = false, -- change to '*' to use release branches
 		config = function()
 			require("mini.ai").setup()
