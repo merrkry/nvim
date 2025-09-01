@@ -5,7 +5,6 @@ local servers = {
 	"emmylua_ls", -- .emmyrc.json from https://www.reddit.com/r/neovim/comments/1mdtr4g/emmylua_ls_is_supersnappy/
 	"gopls",
 	"mesonlsp",
-	"nil_ls",
 	"nixd",
 	"prettier",
 	"ruff",
@@ -13,6 +12,6 @@ local servers = {
 	"taplo",
 }
 
-vim.lsp.set_log_level("OFF")
+vim.lsp.log.set_level("OFF")
 
 vim.lsp.enable(servers, true)
