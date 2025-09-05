@@ -75,14 +75,17 @@ vim.o.confirm = true
 
 vim.o.laststatus = 3
 
-vim.opt.swapfile = false
-vim.opt.autoread = true
+vim.o.swapfile = false
+vim.o.autoread = true
 
 -- recommended by auto-session.nvim
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 -- avoid race between tabline and dropbar
-vim.opt.showtabline = 2
+vim.o.showtabline = 2
 
 -- disable intro page
-vim.opt.shortmess = "I"
+vim.o.shortmess = "I"
+
+-- default style of floating windows
+vim.o.winborder = "rounded"

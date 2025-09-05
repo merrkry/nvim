@@ -34,7 +34,7 @@ return {
 			vim.api.nvim_set_hl(0, "FloatBorder", { fg = "none", bg = "none" })
 			vim.keymap.set("n", "<leader>H", function()
 				harpoon.ui:toggle_quick_menu(list, {
-					border = "rounded",
+					border = vim.o.winborder,
 					title_pos = "center",
 					ui_width_ratio = 0.40,
 				})

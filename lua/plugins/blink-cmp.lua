@@ -54,10 +54,13 @@ return {
 			documentation = {
 				auto_show = true,
 				auto_show_delay_ms = 0,
+				--
+				-- window = { border = "single" },
 			},
 
 			-- colorful-menu.nvim
 			menu = {
+				-- border = "single",
 				draw = {
 					-- We don't need label_description now because label and label_description are already
 					-- combined together in label by colorful-menu.nvim.
@@ -96,7 +99,10 @@ return {
 			},
 		},
 
-		-- signature = { enabled = true },
+		-- signature = {
+		-- 	enabled = true,
+		-- 	window = { border = "single" },
+		-- },
 	},
 	opts_extend = { "sources.default" },
 }
