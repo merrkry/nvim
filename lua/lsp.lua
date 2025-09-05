@@ -10,6 +10,7 @@ local servers = {
 	"ruff",
 	"rust_analyzer",
 	"taplo",
+	"tinymist",
 }
 
 vim.lsp.log.set_level("OFF")
