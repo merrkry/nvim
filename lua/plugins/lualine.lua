@@ -13,7 +13,10 @@ return {
 					theme = "auto",
 				},
 				sections = {
-					lualine_x = { "copilot", "encoding", "filetype" },
+					lualine_x = { "copilot", {
+						"lsp_status",
+						ignore_lsp = { "copilot" },
+					}, "filetype" },
 				},
 			})
 		end,
