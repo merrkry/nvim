@@ -30,6 +30,7 @@
   "render-markdown.nvim": { "branch": "main", "commit": "e76eb2e4262f0f0a1a7bd7a454dd7d44f1299afd" },
   "smartab.nvim": { "branch": "master", "commit": "a7529efc1e2c8cfe760ac528663225accafadee4" },
   "snacks.nvim": { "branch": "main", "commit": "1facbd065db83a69055859c13af3083b7b7f5edb" },
+  "tiny-inline-diagnostic.nvim": { "branch": "main", "commit": "f64efd33a51ea89bdb847fb3aaf716e96b83ba1a" },
   "treesitter-modules.nvim": { "branch": "main", "commit": "415a69079db7254c456b62b18849a36cdba7e005" },
   "typst-preview.nvim": { "branch": "master", "commit": "dea4525d5420b7c32eebda7de15a6beb9d6574fa" },
   "undotree": { "branch": "master", "commit": "fe9a9d0645f0f5532360b5e5f5c550d7bb4f1869" },
