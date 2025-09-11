@@ -3,7 +3,7 @@ return {
 		"rmagatti/auto-session",
 		lazy = false, -- opts.lazy_support
 		opts = {
-			auto_restore = false, -- BUG
+			auto_restore = true,
 			-- only execute inside git directories
 			auto_create = function()
 				local cmd = "git rev-parse --is-inside-work-tree"
