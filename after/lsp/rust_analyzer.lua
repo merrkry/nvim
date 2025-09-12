@@ -15,5 +15,12 @@ return {
 				"clippy::cargo",
 			},
 		},
+		-- doesn't seem to work
+		-- rustfmt = {
+		-- 	extraArgs = {
+		-- 		"--unstable-features",
+		-- 	},
+		-- 	rangeFormatting = { enable = true },
+		-- },
 	},
 }
