@@ -11,13 +11,19 @@ return {
 			}
 
 			require("auto-save").setup({
+				trigger_events = {
+					defer_save = { "InsertLeave" },
+					cancel_deferred_save = { "InsertEnter" },
+				},
 				condition = function(bufnr)
 					if vim.tbl_contains(excluded_filetypes, vim.fn.getbufvar(bufnr, "&filetype")) then
 						return false
 					end
 					return true
 				end,
+				write_all_buffers = true,
 				noautocmd = true, -- avoid conflict with format on save
+				debounce_delay = 4000,
 			})
 
 			local group = vim.api.nvim_create_augroup("autosave", {})
