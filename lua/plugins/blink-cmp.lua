@@ -99,10 +99,10 @@ return {
 			},
 		},
 
-		-- signature = {
-		-- 	enabled = true,
-		-- 	window = { border = "single" },
-		-- },
+		signature = {
+			enabled = true,
+			window = { border = vim.o.winborder },
+		},
 	},
 	opts_extend = { "sources.default" },
 }
