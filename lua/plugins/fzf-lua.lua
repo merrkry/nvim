@@ -9,16 +9,16 @@ return {
 			{
 				"<leader> ",
 				function()
-					require("fzf-lua").global()
+					require("fzf-lua").files()
 				end,
-				desc = "Open global picker",
+				desc = "Open file picker",
 			},
 			{
 				"<leader>f",
 				function()
-					require("fzf-lua").files()
+					require("fzf-lua").lsp_document_symbols()
 				end,
-				desc = "Open file picker",
+				desc = "Open document symbol picker",
 			},
 			{
 				"<leader>b",
