@@ -3,7 +3,9 @@ return {
 		"lewis6991/gitsigns.nvim",
 		event = "VeryLazy",
 		config = function()
-			require("gitsigns").setup({})
+			require("gitsigns").setup({
+				update_debounce = 1000,
+			})
 		end,
 	},
 }
