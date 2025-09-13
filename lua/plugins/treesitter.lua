@@ -29,4 +29,9 @@ return {
 			incremental_selection = { enable = false },
 		},
 	},
+	{
+		"yorickpeterse/nvim-tree-pairs",
+		event = "VeryLazy",
+		opts = {},
+	},
 }
