@@ -1,7 +1,7 @@
 return {
 	{
 		-- https://github.com/folke/snacks.nvim/pull/1943
-		"merrkry/snacks.nvim",
+		"folke/snacks.nvim",
 		priority = 1000,
 		lazy = false,
 		---@type snacks.Config
