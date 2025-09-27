@@ -25,6 +25,7 @@ return {
 					c = true,
 					cpp = true,
 					go = true,
+					lua = true,
 					python = true,
 					rust = true,
 					["*"] = false,
