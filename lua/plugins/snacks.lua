@@ -1,6 +1,5 @@
 return {
 	{
-		-- https://github.com/folke/snacks.nvim/pull/1943
 		"folke/snacks.nvim",
 		priority = 1000,
 		lazy = false,
@@ -38,11 +37,6 @@ return {
 			-- 		{ section = "startup" },
 			-- 	},
 			-- },
-			image = {
-				math = {
-					enabled = false,
-				},
-			},
 			indent = {
 				animate = {
 					enabled = false,
