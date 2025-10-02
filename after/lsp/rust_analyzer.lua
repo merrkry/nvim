@@ -1,6 +1,8 @@
 ---@type vim.lsp.Config
 return {
 	init_options = {
+		-- TODO: workspace-independent feature flags
+		cargo = { features = "all" },
 		check = {
 			command = "clippy",
 			extraArgs = {
