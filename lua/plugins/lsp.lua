@@ -171,10 +171,7 @@ return {
 			"neovim/nvim-lspconfig",
 		},
 		opts = {
-			ensure_installed = {
-				"emmylua_ls",
-				"mesonlsp",
-			},
+			ensure_installed = {},
 		},
 	},
 	{
