@@ -30,6 +30,13 @@ return {
 					rust = true,
 					["*"] = false,
 				},
+				server_opts_overrides = {
+					settings = {
+						telemetry = {
+							telemetryLevel = "off",
+						},
+					},
+				},
 			})
 
 			-- required by suggestion.hide_during_completion
