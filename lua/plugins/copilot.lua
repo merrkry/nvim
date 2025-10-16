@@ -11,7 +11,7 @@ return {
 				suggestion = {
 					enabled = true,
 					auto_trigger = true,
-					debounce = 1000,
+					debounce = 100,
 					keymap = {
 						accept = "<C-y>",
 						accept_word = "<C-l>",
