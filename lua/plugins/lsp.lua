@@ -135,11 +135,23 @@ return {
 						map("<leader>th", function()
 							vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
 						end, "Toggle inlay hints")
-						-- enable by default
+
+						-- enabled by default
 						vim.lsp.inlay_hint.enable(true)
 					end
-					-- disable by default
-					vim.lsp.inlay_hint.enable(false)
+				end,
+			})
+
+			-- Some low LSPs, like rust-analyzer, might not be able to display inlay hint right after launch.
+			-- We call `inlay_hint.enable` to re-trigger the display of inlay hint after any progress ending.
+			vim.api.nvim_create_autocmd("LspProgress", {
+				callback = function(event)
+					local value = event.data.params.value
+					if value.kind == "begin" then
+					elseif value.kind == "end" then
+						vim.lsp.inlay_hint.enable(vim.lsp.inlay_hint.is_enabled())
+					elseif value.kind == "report" then
+					end
 				end,
 			})
 
