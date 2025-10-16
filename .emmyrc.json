@@ -9,11 +9,7 @@
     ]
   },
   "workspace": {
-    "library": [
-      "$VIMRUNTIME",
-      "$LLS_Addons/luvit",
-      "$HOME/.local/share/nvim/lazy"
-    ],
+    "library": ["$VIMRUNTIME", "$HOME/.local/share/nvim/lazy"],
     "ignoreGlobs": ["**/*_spec.lua"]
   }
 }
