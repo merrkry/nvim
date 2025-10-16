@@ -45,7 +45,6 @@ return {
 			input = {},
 			notifier = {},
 			quickfile = {},
-			statuscolumn = {},
 		},
 		keys = {
 			{

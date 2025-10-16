@@ -6,19 +6,23 @@ return {
 			vim.diagnostic.config({
 				severity_sort = true,
 				float = { border = vim.o.winborder, source = "if_many" },
-				underline = { severity = vim.diagnostic.severity.ERROR },
-				signs = vim.g.have_nerd_font and {
-					text = {
-						[vim.diagnostic.severity.ERROR] = "󰅚 ",
-						[vim.diagnostic.severity.WARN] = "󰀪 ",
-						[vim.diagnostic.severity.INFO] = "󰋽 ",
-						[vim.diagnostic.severity.HINT] = "󰌶 ",
-					},
-				} or {},
+				underline = false,
+				signs = vim.g.have_nerd_font
+						and {
+							-- read by tiny-inline-diagnostic.nvim
+							text = {
+								[vim.diagnostic.severity.ERROR] = "󰅚 ",
+								[vim.diagnostic.severity.WARN] = "󰀪 ",
+								[vim.diagnostic.severity.INFO] = "󰋽 ",
+								[vim.diagnostic.severity.HINT] = "󰌶 ",
+							},
+							severity = {}, -- don't display anything on statuscolumn
+						}
+					or {},
 				virtual_text = false,
-				-- {
-				-- 	source = "if_many",
-				-- 	spacing = 2,
+				-- virtual_text = {
+				-- 	current_line = nil, -- show both current and other lines
+				-- 	spacing = 4,
 				-- 	format = function(diagnostic)
 				-- 		local diagnostic_message = {
 				-- 			[vim.diagnostic.severity.ERROR] = diagnostic.message,
@@ -29,19 +33,33 @@ return {
 				-- 		return diagnostic_message[diagnostic.severity]
 				-- 	end,
 				-- },
+				update_in_insert = false,
 			})
 
+			-- https://github.com/zed-industries/zed/blob/main/assets/themes/one/one.json
+			vim.api.nvim_set_hl(0, "DiagnosticError", { fg = "#d07277" })
+			vim.api.nvim_set_hl(0, "DiagnosticWarn", { fg = "#dec184" })
+			vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = "#74ade8" })
+			vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = "#788ca6" })
+
 			require("tiny-inline-diagnostic").setup({
-				preset = "simple",
+				preset = "modern",
+				-- transparent_bg = true,
+				hi = {
+					-- All above hg will still be blended in some mysterious way.
+					mixing_color = "None",
+				},
 				options = {
 					use_icons_from_diagnostic = true,
-					throttle = 100,
+					throttle = 250,
 					multilines = {
-						enabled = false,
+						enabled = true,
 						always_show = true, -- otherwise only show when current line has no diagnostics
 						trim_whitespaces = true,
 					},
 					show_all_diags_on_cursorline = false,
+					enable_on_insert = true,
+					enable_on_select = true,
 				},
 			})
 		end,

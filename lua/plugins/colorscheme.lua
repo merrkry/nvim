@@ -7,7 +7,7 @@ return {
 			require("catppuccin").setup({
 				flavour = "frappe",
 				transparent_background = true,
-				no_italic = true,
+				-- no_italic = true,
 				auto_integrations = true,
 			})
 			vim.cmd("colorscheme catppuccin")
