@@ -194,7 +194,9 @@ return {
 	{
 		"folke/trouble.nvim",
 		cmd = "Trouble",
-		opts = {},
+		opts = {
+			auto_preview = false,
+		},
 		keys = {
 			{
 				"<leader>qD",
