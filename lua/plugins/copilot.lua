@@ -3,6 +3,20 @@ return {
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
 		event = "InsertEnter",
+		keys = {
+			{
+				"<leader>tc",
+				function()
+					require("copilot.suggestion").toggle_auto_trigger()
+					if vim.b.copilot_suggestion_hidden then
+						vim.notify("Copilot auto trigger disabled")
+					else
+						vim.notify("Copilot auto trigger enabled")
+					end
+				end,
+				desc = "Toggle Copilot auto trigger",
+			},
+		},
 		config = function()
 			require("copilot").setup({
 				panel = {
