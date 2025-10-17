@@ -8,6 +8,7 @@ return {
 				lua = { "stylua" },
 				markdown = { "prettier" },
 				json = { "prettier" },
+				jsonc = { "prettier" },
 				yaml = { "prettier" },
 				["_"] = { "trim_whitespace" },
 			},
