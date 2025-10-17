@@ -191,23 +191,4 @@ return {
 		event = "Filetype",
 		opts = {},
 	},
-	{
-		"folke/trouble.nvim",
-		cmd = "Trouble",
-		opts = {
-			auto_preview = false,
-		},
-		keys = {
-			{
-				"<leader>qD",
-				"<cmd>Trouble diagnostics toggle<cr>",
-				desc = "Global Diagnostics",
-			},
-			{
-				"<leader>qd",
-				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-				desc = "Buffer Diagnostics",
-			},
-		},
-	},
 }
