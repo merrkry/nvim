@@ -37,17 +37,22 @@ return {
 			})
 
 			-- https://github.com/zed-industries/zed/blob/main/assets/themes/one/one.json
-			vim.api.nvim_set_hl(0, "DiagnosticError", { fg = "#d07277" })
-			vim.api.nvim_set_hl(0, "DiagnosticWarn", { fg = "#dec184" })
-			vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = "#74ade8" })
-			vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = "#788ca6" })
+			vim.api.nvim_set_hl(0, "DiagnosticError", { fg = "#d07277", italic = true })
+			vim.api.nvim_set_hl(0, "DiagnosticWarn", { fg = "#dec184", italic = true })
+			vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = "#74ade8", italic = true })
+			vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = "#788ca6", italic = true })
 
 			require("tiny-inline-diagnostic").setup({
-				preset = "modern",
+				preset = "simple",
 				-- transparent_bg = true,
 				hi = {
 					-- All above hg will still be blended in some mysterious way.
-					mixing_color = "None",
+					-- mixing_color = "#3b414d",
+					mixing_color = "#282C33", -- zed's One Dark background
+					-- background = "#FFFFFF",
+				},
+				blend = {
+					factor = 26 / 255, -- zed uses alpha 1A for background
 				},
 				options = {
 					use_icons_from_diagnostic = true,
@@ -58,8 +63,28 @@ return {
 						trim_whitespaces = true,
 					},
 					show_all_diags_on_cursorline = false,
-					enable_on_insert = true,
-					enable_on_select = true,
+					enable_on_insert = false,
+					enable_on_select = false,
+					overflow = {
+						mode = "oneline",
+						-- padding = 4,
+					},
+					format = function(diagnostic)
+						local msg = diagnostic.message
+						if diagnostic.source == "clippy" then
+							local patterns = {
+								"%s*for further information visit https://[^%s]+",
+								"%s*`[^`]*` implied by `[^`]*`%s*to override `[^`]*`%s*add `[^`]*`",
+							}
+							for _, pattern in ipairs(patterns) do
+								msg = string.gsub(msg, pattern, "")
+							end
+						elseif diagnostic.source == "rustc" then
+							local pattern = "`#%[warn%b()%]`%s*%b()%s*on by default"
+							msg = string.gsub(msg, pattern, "")
+						end
+						return msg -- .. " [" .. diagnostic.source .. "]"
+					end,
 				},
 			})
 		end,
