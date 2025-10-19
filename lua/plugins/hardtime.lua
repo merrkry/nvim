@@ -19,6 +19,12 @@ return {
 				["<C-N>"] = false,
 				["<C-P>"] = false,
 			},
+			disabled_keys = {
+				["<Up>"] = false,
+				["<Down>"] = false,
+				["<Left>"] = false,
+				["<Right>"] = false,
+			},
 		},
 	},
 }
