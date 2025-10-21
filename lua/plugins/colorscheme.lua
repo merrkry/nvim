@@ -8,6 +8,9 @@ return {
 				flavour = "frappe",
 				transparent_background = true,
 				-- no_italic = true,
+				styles = {
+					comments = {},
+				},
 				auto_integrations = true,
 			})
 			vim.cmd("colorscheme catppuccin")

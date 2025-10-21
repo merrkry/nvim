@@ -37,10 +37,10 @@ return {
 			})
 
 			-- https://github.com/zed-industries/zed/blob/main/assets/themes/one/one.json
-			vim.api.nvim_set_hl(0, "DiagnosticError", { fg = "#d07277", italic = true })
-			vim.api.nvim_set_hl(0, "DiagnosticWarn", { fg = "#dec184", italic = true })
-			vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = "#74ade8", italic = true })
-			vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = "#788ca6", italic = true })
+			vim.api.nvim_set_hl(0, "DiagnosticError", { fg = "#d07277" })
+			vim.api.nvim_set_hl(0, "DiagnosticWarn", { fg = "#dec184" })
+			vim.api.nvim_set_hl(0, "DiagnosticInfo", { fg = "#74ade8" })
+			vim.api.nvim_set_hl(0, "DiagnosticHint", { fg = "#788ca6" })
 
 			require("tiny-inline-diagnostic").setup({
 				preset = "simple",
