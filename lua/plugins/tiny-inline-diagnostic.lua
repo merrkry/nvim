@@ -75,6 +75,7 @@ return {
 							local patterns = {
 								"%s*for further information visit https://[^%s]+",
 								"%s*`[^`]*` implied by `[^`]*`%s*to override `[^`]*`%s*add `[^`]*`",
+								"%s*`[^`]*` implied by `[^`]*`",
 							}
 							for _, pattern in ipairs(patterns) do
 								msg = string.gsub(msg, pattern, "")
