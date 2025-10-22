@@ -67,6 +67,9 @@ return {
 							end,
 						},
 					},
+
+					-- This might create lots of empty buffers, causing lag, espcially with rust-analyzer.
+					treesitter = {},
 				},
 			},
 		},
