@@ -30,7 +30,7 @@ return {
 						})
 					end
 
-					local fzf = require("fzf-lua")
+					local picker = require("snacks").picker
 
 					-- Rename the variable under your cursor.
 					--  Most Language Servers support renaming across files, etc.
@@ -38,41 +38,41 @@ return {
 
 					-- Execute a code action, usually your cursor needs to be on top of an error
 					-- or a suggestion from your LSP for this to activate.
-					map("<leader>ca", fzf.lsp_code_actions, "Goto code actions", { "n", "x" })
+					map("g.", vim.lsp.buf.code_action, "Goto code actions", { "n", "x" })
 
 					-- Find references for the word under your cursor.
-					map("gr", fzf.lsp_references, "Goto references")
+					map("gr", picker.lsp_references, "Goto references")
 
 					-- Jump to the implementation of the word under your cursor.
 					--  Useful when your language has ways of declaring types without an actual implementation.
-					map("gi", fzf.lsp_implementations, "Goto implementations")
+					map("gi", picker.lsp_implementations, "Goto implementations")
 
 					-- Jump to the definition of the word under your cursor.
 					--  This is where a variable was first declared, or where a function is defined, etc.
 					--  To jump back, press <C-t>.
-					map("gd", fzf.lsp_definitions, "Goto definitions")
+					map("gd", picker.lsp_definitions, "Goto definitions")
 
 					-- WARN: This is not Goto Definition, this is Goto Declaration.
 					--  For example, in C this would take you to the header.
-					map("gD", fzf.lsp_declarations, "Goto declarations")
+					map("gD", picker.lsp_declarations, "Goto declarations")
 
 					-- Fuzzy find all the symbols in your current document.
 					--  Symbols are things like variables, functions, types, etc.
-					map("<leader>gs", fzf.lsp_document_symbols, "Open document symbol picker")
+					map("<leader>gs", picker.lsp_symbols, "Open document symbol picker")
 
 					-- Fuzzy find all the symbols in your current workspace.
 					--  Similar to document symbols, except searches over your entire project.
-					map("<leader>gS", fzf.lsp_live_workspace_symbols, "Open workspace symbol picker")
+					map("<leader>gS", picker.lsp_workspace_symbols, "Open workspace symbol picker")
 
 					-- Jump to the type of the word under your cursor.
 					--  Useful when you're not sure what type a variable is and you want to see
 					--  the definition of its *type*, not where it was *defined*.
-					map("gy", fzf.lsp_typedefs, "Goto type definitions")
+					map("gy", picker.lsp_type_definitions, "Goto type definitions")
 
 					-- person additions
 					map("<leader>d", vim.diagnostic.open_float, "Open floating diagnostics picker")
-					map("<leader>gd", fzf.diagnostics_document, "Open document diagnostics picker")
-					map("<leader>gD", fzf.diagnostics_workspace, "Open workspace diagnostics picker")
+					map("<leader>gd", picker.diagnostics_buffer, "Open document diagnostics picker")
+					map("<leader>gD", picker.diagnostics, "Open workspace diagnostics picker")
 
 					-- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
 					---@param client vim.lsp.Client
