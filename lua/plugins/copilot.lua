@@ -39,9 +39,11 @@ return {
 					c = true,
 					cpp = true,
 					go = true,
+					javascript = true,
 					lua = true,
 					python = true,
 					rust = true,
+					typescript = true,
 					["*"] = false,
 				},
 				server_opts_overrides = {
