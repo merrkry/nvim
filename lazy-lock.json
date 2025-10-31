@@ -1,4 +1,5 @@
 {
+  "atone.nvim": { "branch": "main", "commit": "7a5ef04a0a1934a397096efbcab74fae79065ccd" },
   "auto-save.nvim": { "branch": "main", "commit": "37c82fd548e3f5ffc2d9d020a65dac1044584f44" },
   "auto-session": { "branch": "main", "commit": "f0eb3d69848389869572b82b336d7a6887e88e43" },
   "blink.cmp": { "branch": "main", "commit": "afc4f4d260af11b248a79c5c8b4f82014f7330f4" },
@@ -34,7 +35,6 @@
   "tiny-inline-diagnostic.nvim": { "branch": "main", "commit": "994c13daf8e75011af82edf30fb0fd90c019a898" },
   "treesitter-modules.nvim": { "branch": "main", "commit": "30fd3750c04a1bcbcf08a73890911167546de209" },
   "typst-preview.nvim": { "branch": "master", "commit": "64469f832c4d214683c12e0fceba98055cb1ce3b" },
-  "undotree": { "branch": "master", "commit": "0f1c9816975b5d7f87d5003a19c53c6fd2ff6f7f" },
   "vim-sleuth": { "branch": "master", "commit": "be69bff86754b1aa5adcbb527d7fcd1635a84080" },
   "vim-tmux-navigator": { "branch": "master", "commit": "c45243dc1f32ac6bcf6068e5300f3b2b237e576a" },
   "which-key.nvim": { "branch": "main", "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a" }
