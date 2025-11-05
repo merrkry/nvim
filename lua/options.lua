@@ -85,7 +85,8 @@ vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 vim.o.showtabline = 2
 
 -- disable intro page
-vim.o.shortmess = "I"
+-- vim.o.shortmess = "I"
+-- This makes the "hit-enter" prompt too long and triggers confirmation constantly on files with long path.
 
 -- default style of floating windows
 vim.o.winborder = "rounded"
