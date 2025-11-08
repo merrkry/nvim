@@ -1,5 +1,5 @@
 {
-  "atone.nvim": { "branch": "main", "commit": "7a5ef04a0a1934a397096efbcab74fae79065ccd" },
+  "atone.nvim": { "branch": "main", "commit": "f07208641fe729f314eaf5e3e4bf3c1785cd7ae7" },
   "auto-save.nvim": { "branch": "main", "commit": "37c82fd548e3f5ffc2d9d020a65dac1044584f44" },
   "auto-session": { "branch": "main", "commit": "292492ab7af4bd8b9e37e28508bc8ce995722fd5" },
   "blink.cmp": { "branch": "main", "commit": "40380e711b616a28affb0f4086a2f7de2f2a556b" },
