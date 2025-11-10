@@ -10,6 +10,9 @@ return {
 						border = vim.o.winborder,
 					},
 				},
+				server = {
+					default_settings = vim.lsp.config["rust_analyzer"].init_options,
+				},
 			}
 		end,
 	},

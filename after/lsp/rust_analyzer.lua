@@ -2,7 +2,7 @@
 return {
 	init_options = {
 		-- TODO: workspace-independent feature flags
-		cargo = { features = "all" },
+		-- cargo = { features = "all" },
 		check = {
 			command = "clippy",
 			extraArgs = {
