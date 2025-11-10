@@ -6,7 +6,7 @@ return {
 			vim.diagnostic.config({
 				severity_sort = true,
 				float = { border = vim.o.winborder, source = "if_many" },
-				underline = false,
+				underline = true,
 				signs = vim.g.have_nerd_font
 						and {
 							-- read by tiny-inline-diagnostic.nvim
@@ -16,7 +16,7 @@ return {
 								[vim.diagnostic.severity.INFO] = "󰋽 ",
 								[vim.diagnostic.severity.HINT] = "󰌶 ",
 							},
-							severity = {}, -- don't display anything on statuscolumn
+							-- severity = {}, -- don't display anything on statuscolumn
 						}
 					or {},
 				virtual_text = false,
@@ -61,6 +61,9 @@ return {
 						enabled = true,
 						always_show = true, -- otherwise only show when current line has no diagnostics
 						trim_whitespaces = true,
+						severity = {
+							vim.diagnostic.severity.ERROR,
+						},
 					},
 					show_all_diags_on_cursorline = false,
 					enable_on_insert = false,
@@ -95,7 +98,8 @@ return {
 				function()
 					local diag = require("tiny-inline-diagnostic.diagnostic")
 					diag.toggle()
-					if diag.user_toggle_state then
+					local state = require("tiny-inline-diagnostic.state")
+					if state.user_toggle_state then
 						vim.notify("diagnostics enabled")
 					else
 						vim.notify("diagnostics disabled")
