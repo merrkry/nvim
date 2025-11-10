@@ -8,7 +8,7 @@ local servers = {
 	"nixd",
 	"prettier",
 	"ruff",
-	"rust_analyzer",
+	-- "rust_analyzer", -- handled by rustacea.nvim
 	"taplo",
 	"tinymist",
 	"vtsls",

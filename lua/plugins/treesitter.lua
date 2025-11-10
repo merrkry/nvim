@@ -18,7 +18,6 @@ return {
 				"markdown_inline",
 				"query",
 				"regex",
-				"rust",
 				"vim",
 				"vimdoc",
 			},
