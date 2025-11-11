@@ -14,12 +14,13 @@ local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
 require("lazy").setup({
-	{
-		import = "plugins",
-	},
-	{
-		import = "plugins.lang",
-	},
+	{ import = "plugins" },
+	{ import = "plugins.ai" },
+	{ import = "plugins.edit" },
+	{ import = "plugins.lang" },
+	{ import = "plugins.lsp" },
+	{ import = "plugins.ui" },
+	{ import = "plugins.util" },
 }, {
 	ui = {
 		border = vim.o.winborder,

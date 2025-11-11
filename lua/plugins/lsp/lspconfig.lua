@@ -1,10 +1,5 @@
 return {
 	{
-		"mason-org/mason.nvim",
-		event = "Filetype",
-		opts = {},
-	},
-	{
 		"neovim/nvim-lspconfig",
 		event = "Filetype",
 		dependencies = {
@@ -174,21 +169,5 @@ return {
 				desc = "Toggle virtual line",
 			},
 		},
-	},
-	{
-		"mason-org/mason-lspconfig.nvim",
-		event = "Filetype",
-		dependencies = {
-			"mason-org/mason.nvim",
-			"neovim/nvim-lspconfig",
-		},
-		opts = {
-			ensure_installed = {},
-		},
-	},
-	{
-		"j-hui/fidget.nvim",
-		event = "Filetype",
-		opts = {},
 	},
 }
