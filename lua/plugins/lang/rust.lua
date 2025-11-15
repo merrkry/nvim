@@ -11,7 +11,9 @@ return {
 					},
 				},
 				server = {
-					default_settings = vim.lsp.config["rust_analyzer"].init_options,
+					default_settings = {
+						["rust-analyzer"] = vim.lsp.config["rust_analyzer"].init_options,
+					},
 				},
 			}
 		end,

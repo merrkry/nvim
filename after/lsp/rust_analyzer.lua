@@ -27,12 +27,13 @@ return {
 			lifetimeElisionHints = { enable = "skip_trivial" },
 			typeHints = { hideClosureInitialization = false },
 		},
-		-- doesn't seem to work
-		-- rustfmt = {
-		-- 	extraArgs = {
-		-- 		"--unstable-features",
-		-- 	},
-		-- 	rangeFormatting = { enable = true },
-		-- },
+		rustfmt = {
+			extraArgs = {
+				"--unstable-features",
+			},
+			-- Although `documentRangeFormattingProvider` is true,
+			-- neither native lsp format or conform.nvim can actually do range formatting.
+			rangeFormatting = { enable = true },
+		},
 	},
 }
