@@ -1,6 +1,7 @@
 return {
 	{
 		"saghen/blink.pairs",
+		version = "1.*",
 		build = "nix run .#build-plugin",
 		event = "VeryLazy",
 		config = function()
