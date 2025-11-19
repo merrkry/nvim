@@ -74,19 +74,27 @@ return {
 					},
 					format = function(diagnostic)
 						local msg = diagnostic.message
-						if diagnostic.source == "clippy" then
-							local patterns = {
-								"%s*for further information visit https://[^%s]+",
-								"%s*`[^`]*` implied by `[^`]*`%s*to override `[^`]*`%s*add `[^`]*`",
-								"%s*`[^`]*` implied by `[^`]*`",
-							}
+						local function apply_patterns(patterns)
 							for _, pattern in ipairs(patterns) do
 								msg = string.gsub(msg, pattern, "")
 							end
-						elseif diagnostic.source == "rustc" then
-							local pattern = "`#%[warn%b()%]`%s*%b()%s*on by default"
-							msg = string.gsub(msg, pattern, "")
 						end
+
+						if diagnostic.source == "clippy" then
+							apply_patterns({
+								"%s*for further information visit https://[^%s]+",
+								"%s*`[^`]*` implied by `[^`]*`%s*to override `[^`]*`%s*add `[^`]*`",
+								"%s*`[^`]*` implied by `[^`]*`",
+								"`#%[warn%b()%]`%s*%b()%s*on by default",
+								"`#%[warn%b()%]`%s*on by default",
+							})
+						elseif diagnostic.source == "rustc" then
+							apply_patterns({
+								"`#%[warn%b()%]`%s*%b()%s*on by default",
+								"`#%[warn%b()%]`%s*on by default",
+							})
+						end
+
 						return msg -- .. " [" .. diagnostic.source .. "]"
 					end,
 				},
