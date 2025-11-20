@@ -5,7 +5,7 @@ return {
 		config = function()
 			vim.diagnostic.config({
 				severity_sort = true,
-				float = { border = vim.o.winborder, source = "if_many" },
+				float = { border = vim.o.winborder, source = true },
 				underline = true,
 				signs = vim.g.have_nerd_font
 						and {
