@@ -6,3 +6,6 @@ cleanup:
 sync:
   git pull --autostash
   nvim --headless "+Lazy! restore" +qa
+
+update:
+  nvim --headless "+Lazy! sync" +qa
