@@ -5,6 +5,7 @@ return {
 		opts = {
 			formatters_by_ft = {
 				css = { "prettier" },
+				kdl = { "kdlfmt" },
 				lua = { "stylua" },
 				markdown = { "prettier" },
 				json = { "prettier" },
