@@ -1,98 +1,132 @@
-return {
-	"saghen/blink.cmp",
-	dependencies = { "rafamadriz/friendly-snippets" },
+---@module 'blink.cmp'
+---@type blink.cmp.Config
+local opts = {
+	keymap = {
+		preset = "none",
 
-	version = "1.*",
-	-- build = 'cargo build --release',
-	build = "nix run .#build-plugin",
+		["<CR>"] = { "accept", "fallback" },
 
-	---@module 'blink.cmp'
-	---@type blink.cmp.Config
-	opts = {
-		keymap = {
-			preset = "none",
+		["<Tab>"] = { "accept", "fallback" },
+		["<S-Tab>"] = { "select_prev", "fallback" },
 
-			["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
-			["<C-e>"] = { "hide", "fallback" },
+		-- ["<Esc>"] = { "hide", "fallback" },
 
-			["<C-y>"] = { "accept", "fallback" },
-			-- ["<CR>"] = { "accept", "fallback" },
-			-- ["<Tab>"] = { "select_and_accept", "fallback" },
+		["<C-p>"] = { "snippet_backward", "fallback_to_mappings" },
+		["<C-n>"] = { "snippet_forward", "fallback_to_mappings" },
 
-			["<Up>"] = { "select_prev", "fallback" },
-			["<Down>"] = { "select_next", "fallback" },
-			["<C-k>"] = { "select_prev", "fallback" },
-			["<C-j>"] = { "select_next", "fallback" },
+		["<Left>"] = { "snippet_backward", "fallback" },
+		["<Right>"] = { "snippet_forward", "fallback" },
 
-			["<C-p>"] = { "select_prev", "snippet_backward", "fallback" },
-			["<C-n>"] = { "select_next", "snippet_forward", "fallback" },
+		["<Up>"] = { "select_prev", "fallback" },
+		["<Down>"] = { "select_next", "fallback" },
 
-			["<C-b>"] = { "scroll_documentation_up", "fallback" },
-			["<C-f>"] = { "scroll_documentation_down", "fallback" },
+		["<C-k>"] = { "select_prev", "fallback_to_mappings" },
+		["<C-j>"] = { "select_next", "fallback_to_mappings" },
 
-			-- ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
-		},
+		["<C-y>"] = { "accept", "fallback" },
+		["<C-e>"] = { "hide", "fallback_to_mappings" },
 
-		appearance = {
-			nerd_font_variant = "mono",
-		},
+		["<C-d>"] = { "show_documentation", "hide_documentation", "fallback" },
 
-		completion = {
-			list = {
-				selection = {
-					preselect = true,
-					auto_insert = false,
-				},
-			},
-			documentation = {
-				auto_show = true,
-				auto_show_delay_ms = 1000,
-				window = { border = vim.o.winborder },
-			},
+		["<C-b>"] = { "scroll_documentation_up", "fallback" },
+		["<C-f>"] = { "scroll_documentation_down", "fallback" },
+	},
 
-			-- colorful-menu.nvim
-			menu = {
-				border = vim.o.winborder,
-				draw = {
-					-- We don't need label_description now because label and label_description are already
-					-- combined together in label by colorful-menu.nvim.
-					columns = { { "kind_icon" }, { "label", gap = 1 } },
-					components = {
-						label = {
-							text = function(ctx)
-								return require("colorful-menu").blink_components_text(ctx)
-							end,
-							highlight = function(ctx)
-								return require("colorful-menu").blink_components_highlight(ctx)
-							end,
-						},
-					},
+	appearance = {
+		nerd_font_variant = "mono",
+	},
 
-					-- This might create lots of empty buffers, causing lag, espcially with rust-analyzer.
-					treesitter = {},
-				},
+	completion = {
+		list = {
+			selection = {
+				preselect = true,
+				auto_insert = false,
 			},
 		},
-
-		-- Default list of enabled providers defined so that you can extend it
-		-- elsewhere in your config, without redefining it, due to `opts_extend`
-		sources = {
-			default = { "lsp", "path", "snippets", "buffer" },
-		},
-
-		fuzzy = {
-			implementation = "prefer_rust_with_warning",
-			sorts = {
-				"exact",
-				"score",
-				"sort_text",
-			},
-		},
-
-		signature = {
-			enabled = true,
+		documentation = {
+			auto_show = true,
+			auto_show_delay_ms = 1000,
 			window = { border = vim.o.winborder },
 		},
+		menu = {
+			border = vim.o.winborder,
+			draw = {
+				-- This might create lots of empty buffers, causing lag, especially with rust-analyzer.
+				treesitter = {},
+			},
+		},
 	},
-	opts_extend = { "sources.default" },
+
+	sources = {
+		default = { "lsp", "path", "snippets", "buffer" },
+		per_filetype = {
+			lua = { "lsp", "lazydev", "path", "snippets", "buffer" },
+			sql = { "dadbod", "path", "snippets", "buffer" },
+		},
+		providers = {
+			-- https://github.com/kristijanhusak/vim-dadbod-completion
+			dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+			-- https://github.com/folke/lazydev.nvim#-installation
+			lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
+		},
+	},
+
+	fuzzy = {
+		implementation = "prefer_rust_with_warning",
+		sorts = {
+			"exact",
+			"score",
+			"sort_text",
+		},
+	},
+
+	signature = {
+		enabled = true,
+		window = { border = vim.o.winborder },
+	},
+
+	cmdline = {
+		keymap = {
+			preset = "inherit",
+			["<Tab>"] = { "show_and_insert_or_accept_single", "select_next" },
+			["<S-Tab>"] = { "show_and_insert_or_accept_single", "select_prev" },
+		},
+	},
+}
+
+-- colorful-menu.nvim
+opts = vim.tbl_deep_extend("error", opts, {
+	completion = {
+		menu = {
+			draw = {
+				columns = { { "kind_icon" }, { "label", gap = 1 } },
+				components = {
+					label = {
+						text = function(ctx)
+							return require("colorful-menu").blink_components_text(ctx)
+						end,
+						highlight = function(ctx)
+							return require("colorful-menu").blink_components_highlight(ctx)
+						end,
+					},
+				},
+			},
+		},
+	},
+})
+
+---@type LazySpec
+return {
+	{
+		"saghen/blink.cmp",
+
+		version = "1.*",
+		-- build = "cargo +nightly build --release",
+		-- build = 'nix run .#build-plugin',
+
+		event = { "LazyFile" },
+
+		opts = opts,
+		opts_extend = { "sources.default" },
+	},
 }

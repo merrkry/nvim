@@ -1,7 +1,14 @@
+---@type LazySpec
 return {
 	{
 		"j-hui/fidget.nvim",
-		event = "Filetype",
-		opts = {},
+		event = "VeryLazy",
+		opts = {
+			notification = {
+				window = {
+					winblend = 0,
+				},
+			},
+		},
 	},
 }

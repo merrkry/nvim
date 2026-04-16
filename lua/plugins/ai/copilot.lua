@@ -1,51 +1,39 @@
+local allowed_filetypes = require("lang").edit_prediction_filetypes()
+
+---@type LazySpec
 return {
 	{
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
-		event = "InsertEnter",
-		keys = {
-			{
-				"<leader>tc",
-				function()
-					require("copilot.suggestion").toggle_auto_trigger()
-					if vim.b.copilot_suggestion_hidden then
-						vim.notify("Copilot auto trigger disabled")
-					else
-						vim.notify("Copilot auto trigger enabled")
-					end
-				end,
-				desc = "Toggle Copilot auto trigger",
-			},
-		},
+		ft = allowed_filetypes, -- Avoid launch node when e.g. editing config.
 		config = function()
+			local filetypes = {
+				["*"] = false,
+			}
+			for _, filetype in ipairs(allowed_filetypes) do
+				filetypes[filetype] = true
+			end
+
 			require("copilot").setup({
 				panel = {
 					enabled = false,
 				},
 				suggestion = {
 					enabled = true,
-					auto_trigger = true,
+					auto_trigger = false,
 					debounce = 100,
+					trigger_on_accept = false, -- Next/prev can still trigger completion.
 					keymap = {
-						accept = "<C-y>",
+						accept = "<Tab>",
 						accept_word = "<C-l>",
 						accept_line = "<C-j>",
-						next = "<M-]>",
-						prev = "<M-[>",
-						dismiss = "<C-n>",
+						next = "<A-]>",
+						prev = "<A-[>",
+						dismiss = "<C-e>",
+						-- toggle_auto_trigger = "\\I", -- seems broken
 					},
 				},
-				filetypes = {
-					c = true,
-					cpp = true,
-					go = true,
-					javascript = true,
-					lua = true,
-					python = true,
-					rust = true,
-					typescript = true,
-					["*"] = false,
-				},
+				filetypes = filetypes,
 				server_opts_overrides = {
 					settings = {
 						telemetry = {
@@ -55,7 +43,6 @@ return {
 				},
 			})
 
-			-- required by suggestion.hide_during_completion
 			vim.api.nvim_create_autocmd("User", {
 				pattern = "BlinkCmpMenuOpen",
 				callback = function()
@@ -69,16 +56,15 @@ return {
 					vim.b.copilot_suggestion_hidden = false
 				end,
 			})
-
-			-- Directly bind accept to <Tab> will cause issues, or won't work at all.
-			-- https://github.com/zbirenbaum/copilot.lua/discussions/153#discussioncomment-5701223
-			-- vim.keymap.set("i", "<Tab>", function()
-			-- 	if require("copilot.suggestion").is_visible() then
-			-- 		require("copilot.suggestion").accept()
-			-- 	else
-			-- 		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
-			-- 	end
-			-- end, { desc = "Super Tab" })
 		end,
+		keys = {
+			{
+				"\\I",
+				function()
+					require("copilot.suggestion").toggle_auto_trigger()
+				end,
+				desc = "Toggle automatic inline completion",
+			},
+		},
 	},
 }

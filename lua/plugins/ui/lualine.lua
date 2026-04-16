@@ -1,10 +1,9 @@
+---@type LazySpec
 return {
 	{
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
 		dependencies = {
-			"echasnovski/mini.nvim",
-
 			"AndreM222/copilot-lualine",
 		},
 		config = function()
@@ -13,10 +12,19 @@ return {
 					theme = "auto",
 				},
 				sections = {
-					lualine_x = { "copilot", {
-						"lsp_status",
-						ignore_lsp = { "copilot" },
-					}, "filetype" },
+					lualine_c = {
+						{
+							"filename",
+							path = 1,
+						},
+					},
+					lualine_x = {
+						"copilot",
+						{
+							"lsp_status",
+							ignore_lsp = { "copilot", "typos_lsp" },
+						},
+					},
 				},
 			})
 		end,

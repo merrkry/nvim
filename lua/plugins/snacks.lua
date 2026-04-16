@@ -1,77 +1,119 @@
+---@type snacks.Config
+local opts = {}
+
+if not vim.g.vscode then
+	---@module 'snacks'
+	---@type snacks.Config
+	local extra_opts = {
+		bigfile = {},
+		dashboard = {
+			sections = {
+				{ section = "header" },
+			},
+		},
+		indent = {
+			animate = {
+				enabled = false,
+			},
+		},
+		input = {},
+		notifier = {},
+		picker = {
+			limit_live = 1024,
+			ui_select = true,
+			win = {
+				input = {
+					keys = {
+						["<Esc>"] = { "close", mode = { "n", "i" } },
+					},
+				},
+			},
+		},
+		quickfile = {
+			exclude = require("lang").treesitter_excludes(),
+		},
+		rename = {},
+		statuscolumn = {},
+		terminal = {},
+	}
+	opts = vim.tbl_deep_extend("error", opts, extra_opts)
+end
+
+--- https://github.com/folke/snacks.nvim/blob/main/docs/rename.md#oilnvim
+
+vim.api.nvim_create_autocmd("User", {
+	pattern = "MiniFilesActionRename",
+	callback = function(event)
+		Snacks.rename.on_rename_file(event.data.from, event.data.to)
+	end,
+})
+
+vim.api.nvim_create_autocmd("User", {
+	pattern = "OilActionsPost",
+	callback = function(event)
+		if event.data.actions[1].type == "move" then
+			Snacks.rename.on_rename_file(event.data.actions[1].src_url, event.data.actions[1].dest_url)
+		end
+	end,
+})
+
+---@type LazySpec
 return {
 	{
 		"folke/snacks.nvim",
-		priority = 1000,
+		priority = 900,
 		lazy = false,
-		---@type snacks.Config
-		opts = {
-			bigfile = {},
-			dashboard = {
-				sections = {
-					{ section = "header" },
-				},
-			},
-			indent = {
-				animate = {
-					enabled = false,
-				},
-			},
-			input = {},
-			notifier = {},
-			picker = {
-				limit_live = 1000,
-				ui_select = true,
-			},
-			quickfile = {},
-		},
+		-- It seems snacks has complicated initialization, simply call `require("snacks").setup(opts)` won't work
+		opts = opts,
 		keys = {
 			{
 				"<leader>n",
 				function()
-					require("snacks").notifier.show_history()
+					Snacks.notifier.show_history()
 				end,
 				desc = "Show notification history",
 			},
 			{
-				"<leader> ",
+				"<leader>j",
 				function()
-					require("snacks").picker.pick("files", {
-						matcher = {
-							cwd_bonus = true,
-							frequency = true,
-							history_bonus = true,
-						},
-					})
+					Snacks.picker.jumps()
 				end,
-				desc = "Open file picker",
+				desc = "Open jumplist picker",
 			},
 			{
-				"<leader>f",
+				"<leader>'",
 				function()
-					require("snacks").picker.pick("lsp_symbols")
+					Snacks.picker.resume()
 				end,
-				desc = "Open document symbol picker",
-			},
-			{
-				"<leader>b",
-				function()
-					require("snacks").picker.pick("buffers")
-				end,
-				desc = "Open buffer picker",
+				desc = "Resume last picker",
 			},
 			{
 				"<leader>/",
 				function()
-					require("snacks").picker.pick("grep")
+					Snacks.picker.grep()
 				end,
-				desc = "Search with ripgrep",
+				desc = "Global search in workspace folder",
 			},
 			{
 				"<leader>?",
 				function()
-					require("snacks").picker.pick("keymaps")
+					Snacks.picker.command_history()
 				end,
-				desc = "Search keymaps",
+				desc = "Open command history picker",
+			},
+			{
+				"<leader>b",
+				function()
+					Snacks.picker.buffers()
+				end,
+				desc = "Open buffer picker",
+			},
+			{
+				"<leader>m",
+				function()
+					Snacks.picker.marks()
+				end,
+				desc = "Open mark picker",
 			},
 		},
 	},

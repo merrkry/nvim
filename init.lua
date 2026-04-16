@@ -1,14 +1,3 @@
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
-vim.g.have_nerd_font = true
-
-require("options")
-
-require("keymaps")
-
+require("config").pre_lazy()
 require("lazy-bootstrap")
-
-require("lsp")
-
-require("fcitx5")
+require("config").post_lazy()
