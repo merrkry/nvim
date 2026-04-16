@@ -54,7 +54,7 @@ rollback() {
 trap rollback ERR
 
 if [[ "$(git branch --show-current)" != "$BRANCH_NAME" ]]; then
-  printf "error: must be on ${BRANCH_NAME}\n" >&2
+  printf "error: must be on %s\n" "$BRANCH_NAME" >&2
   exit 1
 fi
 
