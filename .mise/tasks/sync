@@ -1,0 +1,82 @@
+#!/usr/bin/env bash
+#MISE description="Sync config"
+
+set -Eeuo pipefail
+
+readonly LOCKFILE="lazy-lock.json"
+
+BRANCH_NAME="master"
+START_HEAD=""
+
+run() {
+  local output
+
+  if ! output="$("$@" 2>&1)"; then
+    [[ -z "${output}" ]] || printf '%s\n' "${output}" >&2
+    return 1
+  fi
+}
+
+restore_from_committed_lock() {
+  printf 'applying lockfile\n'
+  run nvim --headless "+Lazy! restore" +qa || return
+
+  if git diff --quiet -- "${LOCKFILE}"; then
+    return 0
+  fi
+
+  run git restore -- "${LOCKFILE}" || return
+  run nvim --headless "+Lazy! restore" +qa || return
+  git diff --quiet -- "${LOCKFILE}"
+}
+
+rollback() {
+  local exit_code=$?
+
+  trap - ERR
+
+  if [[ -n "${START_HEAD}" ]]; then
+    printf 'rolling back to %s\n' "${START_HEAD}" >&2
+
+    git rebase --abort >/dev/null 2>&1 || true
+    git merge --abort >/dev/null 2>&1 || true
+    git cherry-pick --abort >/dev/null 2>&1 || true
+
+    run git reset --hard "${START_HEAD}"
+    run git clean -fd
+
+    restore_from_committed_lock || printf 'error: rollback restored git state, but Neovim restore failed\n' >&2
+  fi
+
+  exit "${exit_code}"
+}
+
+trap rollback ERR
+
+if [[ "$(git branch --show-current)" != "$BRANCH_NAME" ]]; then
+  printf "error: must be on ${BRANCH_NAME}\n" >&2
+  exit 1
+fi
+
+if [[ -n "$(git status --porcelain=v1)" ]]; then
+  printf 'error: workspace is dirty\n' >&2
+  exit 1
+fi
+
+START_HEAD="$(git rev-parse HEAD)"
+
+printf 'pulling remote %s\n' "$BRANCH_NAME"
+run git pull --rebase origin "$BRANCH_NAME"
+
+restore_from_committed_lock
+
+if [[ -n "$(git status --porcelain=v1)" ]]; then
+  git status --short >&2
+  printf 'error: restore left the workspace dirty\n' >&2
+  exit 1
+fi
+
+printf 'pushing remote %s\n' "$BRANCH_NAME"
+run git push origin "$BRANCH_NAME"
+
+trap - ERR
