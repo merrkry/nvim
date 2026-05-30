@@ -50,8 +50,11 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.filetype.add({
 	pattern = {
-		[".*/.github/workflows/.*%.yml"] = "yaml.ghaction",
 		[".*/.github/workflows/.*%.yaml"] = "yaml.ghaction",
+		[".*/.github/workflows/.*%.yml"] = "yaml.ghaction",
+
+		[".*.yaml.enc"] = "yaml",
+		[".*.yml.enc"] = "yaml",
 	},
 })
 
