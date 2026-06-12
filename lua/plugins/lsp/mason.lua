@@ -34,6 +34,13 @@ return {
 		},
 		opts = {
 			ensure_installed = {},
+			automatic_enable = {
+				exclude = {
+					"roslyn",
+					"roslyn_ls",
+					"rust_analyzer",
+				},
+			},
 		},
 	},
 }
