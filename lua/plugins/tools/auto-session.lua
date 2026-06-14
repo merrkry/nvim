@@ -43,6 +43,7 @@ return {
 				auto_restore = launch_without_command(),
 				-- Only execute inside git directories
 				auto_create = function()
+					-- FIXME: Windows shells may not return exactly "true\n"; prefer systemlist or vim.system.
 					local cmd = "git rev-parse --is-inside-work-tree"
 					return vim.fn.system(cmd) == "true\n"
 				end,

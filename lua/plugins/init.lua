@@ -1,3 +1,5 @@
+local platform = require("kernel.platform")
+
 local M = {
 	{ import = "plugins.mini" },
 	{ import = "plugins.snacks" },
@@ -6,7 +8,7 @@ local M = {
 	{ import = "plugins.treesitter" },
 }
 
-if not vim.g.vscode then
+if not platform.is_profile(platform.PROFILE.VSCODE) then
 	vim.list_extend(M, {
 		{ import = "plugins.ai" },
 		{ import = "plugins.lang" },

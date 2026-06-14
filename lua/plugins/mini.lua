@@ -1,4 +1,7 @@
 local autocmd = require("utils.autocmd")
+local platform = require("kernel.platform")
+
+local in_vscode = platform.is_profile(platform.PROFILE.VSCODE)
 
 ---@class MiniPluginCfg
 ---@field cond boolean | nil
@@ -76,7 +79,7 @@ local mini_opts = {
 		end,
 	},
 	basics = {
-		cond = not vim.g.vscode,
+		cond = not in_vscode,
 		opts = {
 			mappings = {
 				windows = true,
@@ -85,21 +88,21 @@ local mini_opts = {
 		},
 	},
 	bracketed = {
-		cond = not vim.g.vscode,
+		cond = not in_vscode,
 		event = "User VeryLazy",
 	},
 	comment = {
 		event = "User VeryLazy",
 	},
 	cursorword = {
-		cond = not vim.g.vscode,
+		cond = not in_vscode,
 		event = "User VeryLazy",
 		opts = {
 			delay = vim.o.updatetime,
 		},
 	},
 	-- files = {
-	-- 	cond = not vim.g.vscode,
+	-- 	cond = not in_vscode,
 	-- 	event = "User VeryLazy",
 	-- 	opts = {
 	-- 		options = {
@@ -115,7 +118,7 @@ local mini_opts = {
 	-- },
 	-- TODO: consider replace with `textDocument/documentColor`
 	hipatterns = {
-		cond = not vim.g.vscode,
+		cond = not in_vscode,
 		event = "User VeryLazy",
 		setup = function(plugin, _)
 			plugin.setup({
@@ -126,7 +129,7 @@ local mini_opts = {
 		end,
 	},
 	icons = {
-		cond = not vim.g.vscode,
+		cond = not in_vscode,
 		event = "User VeryLazy",
 		setup = function(plugin, opts)
 			plugin.setup(opts)
@@ -134,7 +137,7 @@ local mini_opts = {
 		end,
 	},
 	move = {
-		cond = not vim.g.vscode,
+		cond = not in_vscode,
 		event = "User VeryLazy",
 	},
 	splitjoin = {
@@ -144,7 +147,7 @@ local mini_opts = {
 	-- 	event = "User VeryLazy",
 	-- },
 	trailspace = {
-		cond = not vim.g.vscode,
+		cond = not in_vscode,
 		event = "User VeryLazy",
 		opts = {
 			only_in_normal_buffers = true,

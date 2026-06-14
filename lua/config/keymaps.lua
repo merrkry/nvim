@@ -1,9 +1,11 @@
+local platform = require("kernel.platform")
+
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 vim.keymap.set("n", "<S-l>", "gt", { remap = true })
 vim.keymap.set("n", "<S-h>", "gT", { remap = true })
 
-if vim.g.vscode then
+if platform.is_profile(platform.PROFILE.VSCODE) then
 	return
 end
 

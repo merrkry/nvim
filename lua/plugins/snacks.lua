@@ -1,7 +1,9 @@
+local platform = require("kernel.platform")
+
 ---@type snacks.Config
 local opts = {}
 
-if not vim.g.vscode then
+if not platform.is_profile(platform.PROFILE.VSCODE) then
 	---@module 'snacks'
 	---@type snacks.Config
 	local extra_opts = {

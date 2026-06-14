@@ -1,3 +1,5 @@
+local platform = require("kernel.platform")
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
@@ -9,7 +11,7 @@ vim.o.infercase = true
 
 vim.o.inccommand = "split"
 
-if vim.g.vscode then
+if platform.is_profile(platform.PROFILE.VSCODE) then
 	return
 end
 
@@ -50,6 +52,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.filetype.add({
 	pattern = {
+		-- FIXME: Windows paths may use backslashes, so these workflow patterns may not match there.
 		[".*/.github/workflows/.*%.yaml"] = "yaml.ghaction",
 		[".*/.github/workflows/.*%.yml"] = "yaml.ghaction",
 
