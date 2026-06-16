@@ -1,7 +1,10 @@
+local platform = require("kernel.platform")
+
 ---@type LazySpec
 return {
 	{
 		"rmagatti/auto-session",
+		cond = not platform.is_system(platform.SYSTEM.WINDOWS), -- see FIXME below
 		lazy = false, -- builtin
 		config = function()
 			vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
