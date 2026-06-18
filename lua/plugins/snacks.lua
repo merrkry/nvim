@@ -7,7 +7,9 @@ if not platform.is_profile(platform.PROFILE.VSCODE) then
 	---@module 'snacks'
 	---@type snacks.Config
 	local extra_opts = {
-		bigfile = {},
+		bigfile = {
+			size = 4 * 1024 * 1024;
+		},
 		dashboard = {
 			sections = {
 				{ section = "header" },
