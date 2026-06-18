@@ -6,7 +6,10 @@ return {
 		opts = {
 			retirementAgeMins = 30,
 			minimumBufferNum = 4,
-			deleteBufferWhenFileDeleted = true,
+			-- FIXME: when opening filenames that don't exist yet,
+			-- early-retirement closes the buffer shortly after nvim launch,
+			-- before we have a chance to edit and save it.
+			deleteBufferWhenFileDeleted = false,
 		},
 	},
 }
