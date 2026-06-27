@@ -24,6 +24,7 @@
   "hunk.nvim": { "branch": "master", "commit": "c8a8e7b6973576f63e5bf39aa8338d7f37f4dc53" },
   "im-switch.nvim": { "branch": "main", "commit": "72be8f576fd59e69f381d79e64984b1e1ecde69e" },
   "inlay-hint.nvim": { "branch": "nightly", "commit": "868e7bb12370f2e6cabab1ff56effd1a5b7fb1da" },
+  "jieba.vim": { "branch": "release", "commit": "80e951b6a5c5b8ecbfbc6f0f826b716e19c1f561" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
   "lazydev.nvim": { "branch": "main", "commit": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d" },
   "lualine.nvim": { "branch": "master", "commit": "221ce6b2d999187044529f49da6554a92f740a96" },
