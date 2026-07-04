@@ -61,8 +61,10 @@ local opts = {
 		default = { "lsp", "path", "snippets", "buffer" },
 		per_filetype = {
 			lua = { "lsp", "lazydev", "path", "snippets", "buffer" },
-			markdown = { "lsp", "path", "snippets" }, -- disable buffer completion for better CJK experience
 			sql = { "dadbod", "path", "snippets", "buffer" },
+			-- disable buffer completion for better CJK experience
+			markdown = { "lsp", "path", "snippets" },
+			typst = { "lsp", "path", "snippets" },
 		},
 		providers = {
 			-- https://github.com/kristijanhusak/vim-dadbod-completion
