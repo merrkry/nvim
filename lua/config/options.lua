@@ -65,3 +65,5 @@ vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 
 require("vim._core.ui2").enable({})
+
+vim.opt.whichwrap:append("h,l,<,>,[,]")
