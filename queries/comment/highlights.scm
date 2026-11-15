@@ -2,6 +2,8 @@
 ; `(#set! "priority" 150)` added to each paragraph.
 ; https://github.com/neovim/neovim/pull/15114
 ; https://github.com/nvim-treesitter/nvim-treesitter/blob/master/queries/comment/highlights.scm
+; Derived from nvim-treesitter, licensed under the Apache License 2.0:
+; https://github.com/nvim-treesitter/nvim-treesitter/blob/master/LICENSE
 
 ((tag
   (name) @comment.todo @nospell
