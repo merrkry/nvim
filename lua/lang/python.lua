@@ -8,5 +8,6 @@ return {
 			-- "ruff_fix",
 		},
 		editPrediction = true,
+		lineWidth = 88,
 	},
 }

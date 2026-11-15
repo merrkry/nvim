@@ -1,3 +1,5 @@
+local ui = require("config.ui")
+
 ---@type LazySpec
 return {
 	{
@@ -5,7 +7,8 @@ return {
 		cmd = "Atone",
 		opts = {
 			layout = {
-				width = 0.2,
+				direction = "right",
+				width = ui.sidebar_width,
 			},
 			ui = {
 				compact = true,

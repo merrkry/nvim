@@ -5,5 +5,6 @@ return {
 		lsp = {},
 		formatters = {},
 		editPrediction = true,
+		lineWidth = 120,
 	},
 }

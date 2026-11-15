@@ -1,7 +1,5 @@
 local autocmd = require("utils.autocmd")
-local platform = require("kernel.platform")
-
-local in_vscode = platform.is_profile(platform.PROFILE.VSCODE)
+local in_vscode = vim.g.vscode
 
 ---@class MiniPluginCfg
 ---@field cond boolean | nil
@@ -92,6 +90,7 @@ local mini_opts = {
 		event = "User VeryLazy",
 	},
 	comment = {
+		cond = not in_vscode,
 		event = "User VeryLazy",
 	},
 	cursorword = {

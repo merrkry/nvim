@@ -1,0 +1,68 @@
+[tools]
+neovim = "0.12.6"
+stylua = "2.6.0"
+
+[tools."github:EmmyLuaLs/emmylua-analyzer-rust"]
+version = "0.25.1"
+
+[tools."github:EmmyLuaLs/emmylua-analyzer-rust".platforms]
+linux-x64 = { asset_pattern = "emmylua_check-linux-x64.tar.gz" }
+linux-arm64 = { asset_pattern = "emmylua_check-linux-aarch64-glibc.2.17.tar.gz" }
+macos-x64 = { asset_pattern = "emmylua_check-darwin-x64.tar.gz" }
+macos-arm64 = { asset_pattern = "emmylua_check-darwin-arm64.tar.gz" }
+windows-x64 = { asset_pattern = "emmylua_check-win32-x64.zip" }
+windows-arm64 = { asset_pattern = "emmylua_check-win32-arm64.zip" }
+
+[tasks.check]
+description = "Run Neovim config static checks and tests"
+run = "stylua --check . && emmylua_check --warnings-as-errors . && nvim --headless -u NONE -l tests/run.lua"
+
+[tasks.format]
+description = "Format Neovim config"
+run = "stylua ."
+
+[tasks.dev]
+description = "Run Neovim with this checkout as the config of the nvim-dev appname"
+raw = true
+run = '''
+#!/usr/bin/env bash
+set -euo pipefail
+link="${XDG_CONFIG_HOME:-$HOME/.config}/nvim-dev"
+if [[ -e "$link" && ! -L "$link" ]]; then
+  echo "error: $link exists and is not a symbolic link" >&2
+  exit 1
+fi
+mkdir -p "$(dirname "$link")"
+ln -sfn "{{config_root}}" "$link"
+NVIM_APPNAME=nvim-dev exec nvim "$@"
+'''
+
+[tasks.clean]
+description = "Remove the data, cache, and state of a Neovim appname, and its config if it is a link"
+usage = 'arg "<appname>" help="Neovim appname, such as nvim-dev"'
+run = '''
+#!/usr/bin/env bash
+set -euo pipefail
+paths=$(NVIM_APPNAME="${usage_appname?}" nvim --headless -u NONE -l /dev/stdin <<'EOF'
+for _, kind in ipairs({ "config", "data", "cache", "state" }) do
+  io.stdout:write(vim.fn.stdpath(kind), "\n")
+end
+EOF
+)
+{
+  read -r config
+  if [[ -L "$config" ]]; then
+    rm -- "$config"
+    echo "removed $config" >&2
+  elif [[ -e "$config" ]]; then
+    # A real config directory is a checkout that may hold unpushed work.
+    echo "kept config directory $config" >&2
+  fi
+  while IFS= read -r path; do
+    if [[ -e "$path" || -L "$path" ]]; then
+      rm -rf -- "$path"
+      echo "removed $path" >&2
+    fi
+  done
+} <<<"$paths"
+'''

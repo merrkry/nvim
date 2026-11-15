@@ -1,8 +1,3 @@
-local platform = require("kernel.platform")
-
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
-
 vim.o.showmode = false
 
 vim.o.ignorecase = true
@@ -11,7 +6,7 @@ vim.o.infercase = true
 
 vim.o.inccommand = "split"
 
-if platform.is_profile(platform.PROFILE.VSCODE) then
+if vim.g.vscode then
 	return
 end
 
@@ -65,5 +60,3 @@ vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 
 require("vim._core.ui2").enable({})
-
-vim.opt.whichwrap:append("h,l,<,>,[,]")

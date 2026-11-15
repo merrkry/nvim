@@ -6,17 +6,21 @@ local M = {}
 ---@field formatters? string[]
 ---@field linters? string[]
 ---@field editPrediction? boolean
+---@field inlayHints? boolean
+---@field lineWidth? integer|integer[]
 
 ---@class LangResolvedConfig
 ---@field formatters? string[]
 ---@field linters? string[]
 ---@field editPrediction? boolean
+---@field inlayHints? boolean
+---@field lineWidth? integer|integer[]
 
 ---@type table<string, LangResolvedConfig>?
 local configs_by_ft
 
----@type string[]?
-local default_lsps
+---@type string[]
+local default_lsps = {}
 
 ---@param target table<string, any>
 ---@param entry LangEntry

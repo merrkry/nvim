@@ -1,5 +1,3 @@
-local platform = require("kernel.platform")
-
 ---@param path string?
 ---@return string?
 local function normalize_path(path)
@@ -8,7 +6,7 @@ local function normalize_path(path)
 	end
 
 	local normalized = vim.fs.normalize(path)
-	if platform.is_system(platform.SYSTEM.WINDOWS) then
+	if vim.fn.has("win32") == 1 then
 		return normalized:lower()
 	end
 

@@ -4,5 +4,6 @@ return {
 		lsp = { "emmylua_ls" },
 		formatters = { "stylua" },
 		editPrediction = true,
+		lineWidth = 120,
 	},
 }

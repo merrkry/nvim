@@ -1,19 +1,14 @@
-local platform = require("kernel.platform")
+local file_filters = require("utils.file_filters")
 
 ---@type snacks.Config
 local opts = {}
 
-if not platform.is_profile(platform.PROFILE.VSCODE) then
+if not vim.g.vscode then
 	---@module 'snacks'
 	---@type snacks.Config
 	local extra_opts = {
 		bigfile = {
-			size = 4 * 1024 * 1024;
-		},
-		dashboard = {
-			sections = {
-				{ section = "header" },
-			},
+			size = 4 * 1024 * 1024,
 		},
 		indent = {
 			animate = {
@@ -24,11 +19,23 @@ if not platform.is_profile(platform.PROFILE.VSCODE) then
 		notifier = {},
 		picker = {
 			limit_live = 1024,
+			sources = {
+				files = file_filters.file_picker_options(),
+				grep = file_filters.grep_options(),
+			},
 			ui_select = true,
 			win = {
 				input = {
 					keys = {
+						["<A-h>"] = false,
+						["<A-i>"] = { "toggle_ignored", mode = { "n", "i" } },
 						["<Esc>"] = { "close", mode = { "n", "i" } },
+					},
+				},
+				list = {
+					keys = {
+						["<A-h>"] = false,
+						["<A-i>"] = "toggle_ignored",
 					},
 				},
 			},

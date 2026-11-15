@@ -4,5 +4,6 @@ return {
 		-- lsp = { "rust_analyzer" }, -- managed by rustaceanvim
 		formatters = { "rustfmt" },
 		editPrediction = true,
+		lineWidth = 100,
 	},
 }

@@ -1,3 +1,12 @@
+local file_filters = require("utils.file_filters")
+
+---@param cwd string
+local function open(cwd)
+	local opts = file_filters.file_picker_options()
+	opts.cwd = cwd
+	require("neural-open").open(opts)
+end
+
 ---@type LazySpec
 return {
 	{
@@ -9,9 +18,7 @@ return {
 		opts = {
 			file_sources = {
 				"buffers",
-				-- "neural_recent",
 				"files",
-				"git_files",
 			},
 		},
 		keys = {
@@ -25,14 +32,14 @@ return {
 					else
 						target = vim.uv.cwd()
 					end
-					require("neural-open").open({ cwd = target })
+					open(target)
 				end,
 				desc = "Open file picker at LSP workspace root",
 			},
 			{
 				"<leader>F",
 				function()
-					require("neural-open").open({ cwd = vim.uv.cwd() })
+					open(vim.uv.cwd())
 				end,
 				desc = "Open file picker at current working directory",
 			},

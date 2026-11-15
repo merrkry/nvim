@@ -1,7 +1,6 @@
 local M = {}
 
 local autocmd = require("utils.autocmd")
-local lsp_progress = require("config.autocmd.lsp_progress")
 
 local SHOW_DIAGNOSTICS = "<leader>k"
 
@@ -129,10 +128,14 @@ end
 ---@return nil
 local function setup_buf_inlay_hints(bufnr)
 	local filter = { bufnr = bufnr }
+	local config = require("lang").by_ft()[vim.bo[bufnr].filetype]
+	if config and config.inlayHints ~= nil then
+		vim.lsp.inlay_hint.enable(config.inlayHints, filter)
+	end
 
 	vim.keymap.set("n", "\\H", function()
-		local enabled = vim.lsp.inlay_hint.is_enabled(filter)
-		vim.lsp.inlay_hint.enable(not enabled, filter)
+		local current = vim.lsp.inlay_hint.is_enabled(filter)
+		vim.lsp.inlay_hint.enable(not current, filter)
 	end, { desc = "Toggle inlay hints" })
 
 	-- Some slow LSPs, like rust-analyzer, might not be able to display inlay hints right after launch.
@@ -213,7 +216,7 @@ local function setup_buf(bufnr)
 		setup_buf_inlay_hints(bufnr)
 	end
 
-	vim.lsp.codelens.enable(true, { bufnr = bufnr })
+	-- vim.lsp.codelens.enable(true, { bufnr = bufnr })
 end
 
 ---@return nil
@@ -246,8 +249,6 @@ end
 
 ---@return nil
 function M.setup_lsp()
-	lsp_progress.setup()
-
 	unregister_builtin_lsp_keymaps()
 	-- Some may prefer register them on a per buf basis, but in some cases,
 	-- e.g. using nvim-lint with no LSP attached, we still want these keymaps to be available.

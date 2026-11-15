@@ -1,3 +1,5 @@
+local ui = require("config.ui")
+
 ---@type LazySpec
 return {
 	{
@@ -7,7 +9,7 @@ return {
 		opts = {
 			ui = {
 				tree = {
-					width = 40,
+					width = ui.sidebar_width,
 				},
 				layout = "vertical",
 			},
