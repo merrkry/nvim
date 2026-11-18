@@ -1,6 +1,7 @@
 [tools]
 neovim = "0.12.6"
 stylua = "2.6.0"
+tree-sitter = "0.27.2"
 
 [tools."github:EmmyLuaLs/emmylua-analyzer-rust"]
 version = "0.25.1"
@@ -36,6 +37,10 @@ mkdir -p "$(dirname "$link")"
 ln -sfn "{{config_root}}" "$link"
 NVIM_APPNAME=nvim-dev exec nvim "$@"
 '''
+
+[tasks.update-plugins]
+description = "Update lazy.nvim plugins and the checkout's lockfile"
+run = 'mise run dev -- --headless "+Lazy! sync" +qa'
 
 [tasks.clean]
 description = "Remove the data, cache, and state of a Neovim appname, and its config if it is a link"

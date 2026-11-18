@@ -51,6 +51,9 @@ mise run clean nvim-dev
 
 `clean` removes a linked config, and keeps a config directory such as a clone.
 
+Run `mise run update-plugins` to update the `nvim-dev` plugins and refresh
+`lazy-lock.json` in the checkout.
+
 ## Local plugins
 
 Keep editor settings in `lua/config/`. Implement repository-owned features in
