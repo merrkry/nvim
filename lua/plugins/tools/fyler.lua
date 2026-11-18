@@ -6,7 +6,7 @@ return {
 			vim.api.nvim_create_autocmd("SessionLoadPost", {
 				group = vim.api.nvim_create_augroup("fyler_session_cleanup", { clear = true }),
 				callback = function()
-					-- :restart saves its session before VimLeavePre; restored trees have no instance.
+					-- Older sessions saved with 'sessionoptions' containing "blank" can restore orphaned trees.
 					for _, buf in ipairs(vim.api.nvim_list_bufs()) do
 						if vim.api.nvim_buf_get_name(buf):match("^fyler%-[^:]+://") then
 							for _, win in ipairs(vim.fn.win_findbuf(buf)) do
@@ -20,25 +20,6 @@ return {
 							if vim.api.nvim_buf_is_valid(buf) then
 								vim.api.nvim_buf_delete(buf, { force = true })
 							end
-						end
-					end
-				end,
-			})
-
-			vim.api.nvim_create_autocmd("VimLeavePre", {
-				group = vim.api.nvim_create_augroup("fyler_close_on_exit", { clear = true }),
-				callback = function()
-					local finder = package.loaded["fyler.finder"]
-					if not finder then
-						return
-					end
-
-					-- Close explorer splits before auto-session saves the window layout.
-					for _, tab in ipairs(vim.api.nvim_list_tabpages()) do
-						local instance = finder.instance_get_or_nil(tab)
-						if instance then
-							-- Fyler force-closes without writing pending file operations.
-							instance:close()
 						end
 					end
 				end,

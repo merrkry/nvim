@@ -2,7 +2,7 @@
 return {
 	"nanozuki/tabby.nvim",
 	version = "2.*",
-	event = "User LazyFile",
+	event = require("config.events").lazy_file,
 	config = function()
 		local theme = {
 			fill = "TabLineFill",

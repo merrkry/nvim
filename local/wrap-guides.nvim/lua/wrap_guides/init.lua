@@ -143,21 +143,26 @@ function M.setup(opts)
 			end)
 			return #columns[win].visible > 0
 		end,
-		on_line = function(_, win, buf, row)
-			local line = vim.api.nvim_buf_get_lines(buf, row, row + 1, false)[1]
-			for _, col in ipairs(columns[win].visible) do
-				local target = col + columns[win].left + 1
-				local byte = vim.fn.virtcol2col(win, row + 1, target)
-				-- Draw through whitespace, but never cover source characters.
-				if line:sub(byte, byte):match("%s") or vim.fn.strdisplaywidth(line) < target then
-					vim.api.nvim_buf_set_extmark(buf, ns, row, 0, {
-						virt_text = { { "▏", "WrapGuide" } },
-						virt_text_win_col = col,
-						virt_text_pos = "overlay",
-						hl_mode = "combine",
-						priority = 1,
-						ephemeral = true,
-					})
+		on_range = function(_, win, buf, start_row, _, end_row, end_col)
+			local stop_row = end_col == 0 and end_row or end_row + 1
+			local lines = vim.api.nvim_buf_get_lines(buf, start_row, stop_row, false)
+			for index, line in ipairs(lines) do
+				local row = start_row + index - 1
+				local width = vim.fn.strdisplaywidth(line)
+				for _, col in ipairs(columns[win].visible) do
+					local target = col + columns[win].left + 1
+					local byte = vim.fn.virtcol2col(win, row + 1, target)
+					-- Draw through whitespace, but never cover source characters.
+					if width < target or line:sub(byte, byte):match("%s") then
+						vim.api.nvim_buf_set_extmark(buf, ns, row, 0, {
+							virt_text = { { "▏", "WrapGuide" } },
+							virt_text_win_col = col,
+							virt_text_pos = "overlay",
+							hl_mode = "combine",
+							priority = 1,
+							ephemeral = true,
+						})
+					end
 				end
 			end
 		end,

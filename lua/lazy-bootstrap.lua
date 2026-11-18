@@ -1,14 +1,3 @@
---- Add support for the LazyFile event
---- https://github.com/LazyVim/LazyVim/discussions/1583
----@return nil
-local function register_lazy_file_event()
-	local Event = require("lazy.core.handler.event")
-
-	local lazy_file_events = { "BufReadPost", "BufNewFile", "BufWritePre" }
-	Event.mappings.LazyFile = { id = "LazyFile", event = lazy_file_events }
-	Event.mappings["User LazyFile"] = Event.mappings.LazyFile
-end
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -25,8 +14,6 @@ if not vim.uv.fs_stat(lazypath) then
 end
 ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
-
-register_lazy_file_event()
 
 ---@diagnostic disable-next-line: undefined-field
 require("lazy").setup({

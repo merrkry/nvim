@@ -47,12 +47,8 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.filetype.add({
 	pattern = {
-		-- FIXME: Windows paths may use backslashes, so these workflow patterns may not match there.
-		[".*/.github/workflows/.*%.yaml"] = "yaml.ghaction",
-		[".*/.github/workflows/.*%.yml"] = "yaml.ghaction",
-
-		[".*.yaml.enc"] = "yaml",
-		[".*.yml.enc"] = "yaml",
+		[".*/%.github/workflows/.*%.ya?ml"] = "yaml.ghaction",
+		[".*%.ya?ml%.enc"] = "yaml",
 	},
 })
 

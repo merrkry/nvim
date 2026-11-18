@@ -59,14 +59,15 @@ return {
 
 					return msg -- .. " [" .. diagnostic.source .. "]"
 				end,
-				overwrite_events = { "DiagnosticChanged" }, -- https://github.com/rachartier/tiny-inline-diagnostic.nvim/issues/40
+				-- Include diagnostics from nvim-lint in buffers without an LSP client.
+				overwrite_events = { "DiagnosticChanged" },
 			},
 		},
 		keys = {
 			{
 				"\\d",
 				function()
-					require("tiny-inline-diagnostic.diagnostic").toggle()
+					require("tiny-inline-diagnostic").toggle()
 				end,
 				desc = "Toggle diagnostics",
 			},

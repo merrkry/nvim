@@ -14,10 +14,4 @@ return {
 			end,
 		},
 	},
-	{
-		dir = root .. "/local/lsp-progress.nvim",
-		main = "lsp_progress",
-		lazy = false,
-		opts = {},
-	},
 }
