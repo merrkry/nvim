@@ -37,10 +37,10 @@ return {
 
 				keymaps = {
 					["<C-h>"] = false,
-					["<C-l"] = false,
+					["<C-l>"] = false,
 					-- <C-p> to preview with automatically selected position
 					["<A-h>"] = { "actions.select", opts = { horizontal = true } },
-					["<A-v>"] = { { "actions.select", opts = { vertical = true } } },
+					["<A-v>"] = { "actions.select", opts = { vertical = true } },
 				},
 				view_options = {
 					show_hidden = true,

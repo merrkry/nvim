@@ -3,13 +3,14 @@ return {
 	{
 		"chomosuke/typst-preview.nvim",
 		ft = "typst",
-		opts = {
-			-- FIXME: "chromium" is Linux-specific; choose a Windows browser command when running there.
-			open_cmd = "chromium --incognito --new-window %s",
-			dependencies_bin = {
-				["tinymist"] = "tinymist",
-				["websocat"] = "websocat",
-			},
-		},
+		opts = function()
+			return {
+				open_cmd = vim.fn.executable("chromium") == 1 and "chromium --incognito --new-window %s" or nil,
+				dependencies_bin = {
+					["tinymist"] = "tinymist",
+					["websocat"] = "websocat",
+				},
+			}
+		end,
 	},
 }

@@ -1,9 +1,8 @@
-local autocmd = require("utils.autocmd")
 local in_vscode = vim.g.vscode
 
 ---@class MiniPluginCfg
 ---@field cond boolean | nil
----@field event AutocmdEvents | nil
+---@field event "VeryLazy" | nil
 ---@field opts table | nil
 ---@field setup (fun(plugin: any, opt: table): nil) | nil
 
@@ -27,8 +26,9 @@ local function lazy_setup(configs)
 			end
 
 			if plugin_cfg.event then
-				autocmd.create_autocmd(plugin_cfg.event, {
+				vim.api.nvim_create_autocmd("User", {
 					group = group,
+					pattern = plugin_cfg.event,
 					once = true,
 					callback = setup_func,
 				})
@@ -42,7 +42,7 @@ end
 ---@type table<string, MiniPluginCfg>
 local mini_opts = {
 	ai = {
-		event = "User VeryLazy",
+		event = "VeryLazy",
 		setup = function(plugin, _)
 			local gen_spec = plugin.gen_spec
 
@@ -87,22 +87,22 @@ local mini_opts = {
 	},
 	bracketed = {
 		cond = not in_vscode,
-		event = "User VeryLazy",
+		event = "VeryLazy",
 	},
-	comment = {
-		cond = not in_vscode,
-		event = "User VeryLazy",
-	},
+	-- comment = {
+	-- 	cond = not in_vscode,
+	-- 	event = "VeryLazy",
+	-- },
 	cursorword = {
 		cond = not in_vscode,
-		event = "User VeryLazy",
+		event = "VeryLazy",
 		opts = {
 			delay = vim.o.updatetime,
 		},
 	},
 	-- files = {
 	-- 	cond = not in_vscode,
-	-- 	event = "User VeryLazy",
+	-- 	event = "VeryLazy",
 	-- 	opts = {
 	-- 		options = {
 	-- 			permanent_delete = true, -- mini doesn't support xdg trash
@@ -118,7 +118,7 @@ local mini_opts = {
 	-- TODO: consider replace with `textDocument/documentColor`
 	hipatterns = {
 		cond = not in_vscode,
-		event = "User VeryLazy",
+		event = "VeryLazy",
 		setup = function(plugin, _)
 			plugin.setup({
 				highlighters = {
@@ -129,7 +129,7 @@ local mini_opts = {
 	},
 	icons = {
 		cond = not in_vscode,
-		event = "User VeryLazy",
+		event = "VeryLazy",
 		setup = function(plugin, opts)
 			plugin.setup(opts)
 			plugin.mock_nvim_web_devicons()
@@ -137,17 +137,17 @@ local mini_opts = {
 	},
 	move = {
 		cond = not in_vscode,
-		event = "User VeryLazy",
+		event = "VeryLazy",
 	},
 	splitjoin = {
-		event = "User VeryLazy",
+		event = "VeryLazy",
 	},
 	-- surround = {
-	-- 	event = "User VeryLazy",
+	-- 	event = "VeryLazy",
 	-- },
 	trailspace = {
 		cond = not in_vscode,
-		event = "User VeryLazy",
+		event = "VeryLazy",
 		opts = {
 			only_in_normal_buffers = true,
 		},

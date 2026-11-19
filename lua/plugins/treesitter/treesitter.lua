@@ -4,7 +4,7 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		branch = "main",
 		build = ":TSUpdate",
-		event = "LazyFile",
+		event = require("config.events").lazy_file,
 		config = function()
 			local utils = require("utils.treesitter")
 

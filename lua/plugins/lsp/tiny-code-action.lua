@@ -2,9 +2,7 @@
 return {
 	{
 		"rachartier/tiny-code-action.nvim",
-		dependencies = {
-			{ "nvim-lua/plenary.nvim" },
-		},
+		dependencies = { "folke/snacks.nvim" },
 		event = "LspAttach",
 		opts = {
 			backend = "difftastic",

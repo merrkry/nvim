@@ -128,7 +128,7 @@ return {
 		-- build = "cargo +nightly build --release",
 		-- build = 'nix run .#build-plugin',
 
-		event = { "LazyFile" },
+		event = require("config.events").lazy_file,
 
 		opts = opts,
 		opts_extend = { "sources.default" },

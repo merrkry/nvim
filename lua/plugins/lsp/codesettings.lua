@@ -1,18 +1,3 @@
----@param path string?
----@return string?
-local function normalize_path(path)
-	if not path or path == "" then
-		return nil
-	end
-
-	local normalized = vim.fs.normalize(path)
-	if vim.fn.has("win32") == 1 then
-		return normalized:lower()
-	end
-
-	return normalized
-end
-
 ---@type LazySpec
 return {
 	{
@@ -20,7 +5,9 @@ return {
 		ft = { "json", "jsonc", "lua" },
 		opts = {
 			lua_ls_integration = function()
-				return normalize_path(vim.uv.cwd()) == normalize_path(vim.fn.stdpath("config"))
+				local cwd = vim.uv.fs_stat(".")
+				local config = vim.uv.fs_stat(vim.fn.stdpath("config"))
+				return cwd ~= nil and config ~= nil and cwd.dev == config.dev and cwd.ino == config.ino
 			end,
 		},
 	},

@@ -15,6 +15,9 @@ end
 function M.post_lazy()
 	require("config.commands")
 	require("config.keymaps")
+	if not vim.g.vscode then
+		require("config.diagnostics")
+	end
 end
 
 return M
