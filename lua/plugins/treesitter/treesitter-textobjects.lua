@@ -6,5 +6,11 @@ return {
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		-- mini.ai reads this plugin's textobjects queries directly.
 		event = require("config.events").lazy_file,
+		-- opts = {
+		-- 	select = {
+		-- 		lookahead = true,
+		-- 		include_surrounding_whitespace = false,
+		-- 	},
+		-- },
 	},
 }

@@ -50,6 +50,10 @@ local opts = {
 		},
 		menu = {
 			border = vim.o.winborder,
+			draw = {
+				-- This might create lots of empty buffers, causing lag, especially with rust-analyzer.
+				treesitter = {},
+			},
 		},
 	},
 
@@ -121,6 +125,8 @@ return {
 		"saghen/blink.cmp",
 
 		version = "1.*",
+		-- build = "cargo +nightly build --release",
+		-- build = 'nix run .#build-plugin',
 
 		event = require("config.events").lazy_file,
 

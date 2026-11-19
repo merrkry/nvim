@@ -60,7 +60,7 @@ return {
 					return msg -- .. " [" .. diagnostic.source .. "]"
 				end,
 				-- Include diagnostics from nvim-lint in buffers without an LSP client.
-				overwrite_events = { "DiagnosticChanged" },
+				overwrite_events = { "DiagnosticChanged" }, -- https://github.com/rachartier/tiny-inline-diagnostic.nvim/issues/40
 			},
 		},
 		keys = {

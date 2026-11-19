@@ -1,6 +1,6 @@
 local M = {}
 
-local excluded_names = {
+local explorer_excluded_names = {
 	".direnv",
 	".git",
 	".gradle",
@@ -17,7 +17,7 @@ local excluded_names = {
 	"zig-out",
 }
 
-local excluded_patterns = {
+local explorer_excluded_patterns = {
 	"cmake-build-*",
 	"result-*",
 }
@@ -59,9 +59,19 @@ end
 
 ---@return string[]
 local function search_excluded_globs()
-	local globs = vim.list_extend({}, excluded_names)
-	vim.list_extend(globs, excluded_patterns)
-	return vim.list_extend(globs, lockfile_patterns)
+	local globs = vim.deepcopy(explorer_excluded_names)
+	vim.list_extend(globs, vim.deepcopy(explorer_excluded_patterns))
+	return vim.list_extend(globs, vim.deepcopy(lockfile_patterns))
+end
+
+---@return string[]
+function M.explorer_excluded_names()
+	return vim.deepcopy(explorer_excluded_names)
+end
+
+---@return string[]
+function M.explorer_excluded_patterns()
+	return vim.deepcopy(explorer_excluded_patterns)
 end
 
 ---@return { exclude: string[], filter: { filter: fun(item: { file?: string }): boolean }, hidden: boolean, ignored: boolean }

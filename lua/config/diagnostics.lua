@@ -11,7 +11,21 @@ vim.diagnostic.config({
 			[vim.diagnostic.severity.HINT] = "󰌶",
 		},
 	},
+	-- signs = false, -- don't display anything on statuscolumn
 	virtual_text = false,
+	-- virtual_text = {
+	-- 	current_line = nil, -- show both current and other lines
+	-- 	spacing = 4,
+	-- 	format = function(diagnostic)
+	-- 		local diagnostic_message = {
+	-- 			[vim.diagnostic.severity.ERROR] = diagnostic.message,
+	-- 			[vim.diagnostic.severity.WARN] = diagnostic.message,
+	-- 			[vim.diagnostic.severity.INFO] = diagnostic.message,
+	-- 			[vim.diagnostic.severity.HINT] = diagnostic.message,
+	-- 		}
+	-- 		return diagnostic_message[diagnostic.severity]
+	-- 	end,
+	-- },
 	update_in_insert = false,
 })
 

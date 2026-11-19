@@ -43,11 +43,19 @@ if not vim.g.vscode then
 		quickfile = {
 			exclude = require("lang").treesitter_excludes(),
 		},
+		rename = {},
 		statuscolumn = {},
 		terminal = {},
 	}
 	opts = vim.tbl_deep_extend("error", opts, extra_opts)
 end
+
+vim.api.nvim_create_autocmd("User", {
+	pattern = "MiniFilesActionRename",
+	callback = function(event)
+		Snacks.rename.on_rename_file(event.data.from, event.data.to)
+	end,
+})
 
 ---@type LazySpec
 return {
@@ -55,6 +63,7 @@ return {
 		"folke/snacks.nvim",
 		priority = 900,
 		lazy = false,
+		-- It seems snacks has complicated initialization, simply call `require("snacks").setup(opts)` won't work
 		opts = opts,
 		keys = {
 			{

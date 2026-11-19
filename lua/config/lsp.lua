@@ -1,6 +1,10 @@
 local M = {}
 
 local document_highlight = "textDocument/documentHighlight"
+
+-- Load at most one alternate renderer before capturing the inlay hint API.
+-- require("lazy").load({ plugins = { "inlay-hint.nvim" } })
+-- require("lazy").load({ plugins = { "nvim-lsp-endhints" } })
 local inlay_hints = vim.lsp.inlay_hint
 
 ---@param bufnr integer
@@ -44,7 +48,10 @@ local function setup_keymaps()
 	end
 
 	vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { desc = "Rename symbol" })
+	-- Handled by tiny-code-action.nvim.
+	-- vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, { desc = "Show code actions" })
 	vim.keymap.set("n", "<leader>A", vim.lsp.codelens.run, { desc = "Run codelens command" })
+	-- Same keybinding but set manually to avoid accidentally falling back to `keywordprg`.
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Show hover information" })
 
 	vim.keymap.set("n", "<localleader>H", function()
@@ -55,6 +62,7 @@ local function setup_keymaps()
 	end, { desc = "Toggle inlay hints" })
 end
 
+-- Reference: https://github.com/nvim-lua/kickstart.nvim/blob/3338d3920620861f8313a2745fd5d2be39f39534/init.lua#L588-L615
 local function setup_buffers()
 	local group = vim.api.nvim_create_augroup("LspBufferSetup", {})
 	local highlights = vim.api.nvim_create_augroup("LspCursorHighlight", {})
@@ -75,6 +83,9 @@ local function setup_buffers()
 		callback = function(event)
 			local bufnr = event.buf
 			local client = assert(vim.lsp.get_client_by_id(event.data.client_id))
+			-- if event.event == "LspAttach" then
+			-- 	vim.lsp.codelens.enable(true, { bufnr = bufnr })
+			-- end
 			if not client:supports_method(document_highlight, bufnr) then
 				return
 			end
@@ -111,6 +122,26 @@ function M.setup()
 	setup_keymaps()
 
 	inlay_hints.enable(true)
+
+	-- Disable inlay hints in insert mode.
+	-- https://github.com/neovim/neovim/discussions/29078#discussioncomment-9865397
+	-- vim.api.nvim_create_autocmd("InsertEnter", {
+	-- 	desc = "Disable inlay hints when entering insert mode",
+	-- 	callback = function(args)
+	-- 		local filter = { bufnr = args.buf }
+	-- 		if inlay_hints.is_enabled(filter) then
+	-- 			inlay_hints.enable(false, filter)
+	-- 			vim.api.nvim_create_autocmd("InsertLeave", {
+	-- 				buf = args.buf,
+	-- 				once = true,
+	-- 				desc = "Re-enable inlay hints when leaving insert mode",
+	-- 				callback = function()
+	-- 					inlay_hints.enable(true, filter)
+	-- 				end,
+	-- 			})
+	-- 		end
+	-- 	end,
+	-- })
 	setup_buffers()
 
 	-- Highlight `{}` and `{var}` in Rust format strings.

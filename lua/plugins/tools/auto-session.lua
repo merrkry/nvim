@@ -10,6 +10,7 @@ return {
 		opts = function()
 			return {
 				-- Startup commands such as :DiffEditor own the initial layout.
+				-- Nix wrappers use --cmd to set variables, so only -c and +cmd affect restore.
 				auto_restore = not vim.iter(vim.v.argv):any(function(arg)
 					return arg == "-c" or vim.startswith(arg, "+")
 				end),

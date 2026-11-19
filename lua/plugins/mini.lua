@@ -89,6 +89,10 @@ local mini_opts = {
 		cond = not in_vscode,
 		event = "VeryLazy",
 	},
+	-- comment = {
+	-- 	cond = not in_vscode,
+	-- 	event = "VeryLazy",
+	-- },
 	cursorword = {
 		cond = not in_vscode,
 		event = "VeryLazy",
@@ -96,6 +100,22 @@ local mini_opts = {
 			delay = vim.o.updatetime,
 		},
 	},
+	-- files = {
+	-- 	cond = not in_vscode,
+	-- 	event = "VeryLazy",
+	-- 	opts = {
+	-- 		options = {
+	-- 			permanent_delete = true, -- mini doesn't support xdg trash
+	-- 			use_as_default_explorer = false,
+	-- 		},
+	-- 		windows = {
+	-- 			max_number = 3,
+	-- 			preview = true,
+	-- 			width_preview = 80,
+	-- 		},
+	-- 	},
+	-- },
+	-- TODO: consider replace with `textDocument/documentColor`
 	hipatterns = {
 		cond = not in_vscode,
 		event = "VeryLazy",
@@ -122,6 +142,9 @@ local mini_opts = {
 	splitjoin = {
 		event = "VeryLazy",
 	},
+	-- surround = {
+	-- 	event = "VeryLazy",
+	-- },
 	trailspace = {
 		cond = not in_vscode,
 		event = "VeryLazy",
