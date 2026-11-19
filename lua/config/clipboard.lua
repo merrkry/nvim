@@ -1,7 +1,8 @@
 if vim.g.vscode then
 	vim.g.clipboard = vim.g.vscode_clipboard
 elseif vim.fn.has("win32") == 1 then
-	-- Skip clipboard provider probing during Windows startup.
+	-- The Windows build of Neovim ships with win32yank. Selecting it explicitly
+	-- avoids probing slower fallbacks such as PowerShell on the first + operation.
 	vim.g.clipboard = "win32yank"
 end
 
